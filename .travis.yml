@@ -1,1 +1,4 @@
 language: java
+script:
+  - mvn -B verify
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r target/site/jacoco/jacoco.xml
