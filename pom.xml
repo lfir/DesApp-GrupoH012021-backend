@@ -117,6 +117,10 @@
                 </executions>
                 <configuration>
                     <excludes>
+                        <exclude>ar/edu/unq/desapp/grupoh/BackendAPIApplication.class</exclude>
+                        <exclude>ar/edu/unq/desapp/grupoh/service/*</exclude>
+                        <exclude>ar/edu/unq/desapp/grupoh/persistence/*</exclude>
+                        <exclude>ar/edu/unq/desapp/grupoh/webservice/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
