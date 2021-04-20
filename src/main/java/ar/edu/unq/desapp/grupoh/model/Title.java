@@ -1,15 +1,15 @@
 package ar.edu.unq.desapp.grupoh.model;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+import java.time.LocalDate;
 
 public abstract class Title extends PlatformContent {
     String titleType;
     String primaryTitle;
     String originalTitle;
     Boolean isAdult;
-    Date startYear;
-    Date endYear;
+    LocalDate startYear;
+    LocalDate endYear;
     Integer runtimeMinutes ;
-    ArrayList<String> genres;
+    List<String> genres;
 }
