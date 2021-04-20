@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoh.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,4 +20,6 @@ abstract class Review {
 	ClientPlatform originPlatform;
 	String platformUserId;
 	String language;
+	Integer likeDislikeScore;
+	List<String> userReports;
 }

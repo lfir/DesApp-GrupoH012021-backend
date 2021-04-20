@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,8 @@ public class ReviewTest {
 		freeReview.setPlatformUserId("uid0");
 		freeReview.setRating(2);
 		freeReview.setSpoilerAlert(Boolean.TRUE);
+		freeReview.setLikeDislikeScore(2);
+		freeReview.setUserReports(Arrays.asList("r0", "r1"));
 		
 		assertTrue(String.class.isInstance(freeReview.getCountry()));
 		assertTrue(LocalDate.class.isInstance(freeReview.getDate()));
@@ -37,6 +40,8 @@ public class ReviewTest {
 		assertTrue(String.class.isInstance(freeReview.getPlatformUserId()));
 		assertTrue(Integer.class.isInstance(freeReview.getRating()));
 		assertTrue(Boolean.class.isInstance(freeReview.getSpoilerAlert()));
+		assertTrue(Integer.class.isInstance(freeReview.getLikeDislikeScore()));
+		assertTrue(String.class.isInstance(freeReview.getUserReports().get(0)));
 	}
 	
 	@Test
@@ -49,10 +54,12 @@ public class ReviewTest {
 		premiumReview.setOriginPlatform(this.clientPlatform);
 		premiumReview.setPlatformUserId("uid0");
 		premiumReview.setRating(2);
+		premiumReview.setLikeDislikeScore(5);
+		premiumReview.setUserReports(Arrays.asList("r0", "r1"));
 		
 		PremiumReview premiumReview2 = new PremiumReview(
 			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
-			this.clientPlatform, "id0", "English"
+			this.clientPlatform, "id0", "English", 3, Arrays.asList("")
 		);
 		
 		assertTrue(LocalDate.class.isInstance(premiumReview.getDate()));
@@ -62,6 +69,8 @@ public class ReviewTest {
 		assertTrue(ClientPlatform.class.isInstance(premiumReview.getOriginPlatform()));
 		assertTrue(String.class.isInstance(premiumReview.getPlatformUserId()));
 		assertTrue(Integer.class.isInstance(premiumReview.getRating()));
+		assertTrue(Integer.class.isInstance(premiumReview.getLikeDislikeScore()));
+		assertTrue(String.class.isInstance(premiumReview.getUserReports().get(0)));
 		assertTrue(PremiumReview.class.isInstance(premiumReview2));
 	}
 
@@ -72,7 +81,7 @@ public class ReviewTest {
 		String country = "Argentina";
 		FreeReview freeReview = new FreeReview(
 			"testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
-			this.clientPlatform, "id0", nickname, "English", country
+			this.clientPlatform, "id0", nickname, "English", country, 2, Arrays.asList("")
 		);
 		
 		assertEquals(spoilerAlert, freeReview.getSpoilerAlert());
