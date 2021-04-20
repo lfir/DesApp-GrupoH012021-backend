@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-abstract class Review {
+public abstract class Review {
 	String description;
 	String fullDescription;
 	Integer rating;
