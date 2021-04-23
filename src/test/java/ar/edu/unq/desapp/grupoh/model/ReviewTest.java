@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoh.model;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ReviewTest {
-	private ClientPlatform clientPlatform = new ClientPlatform();
+	private ClientPlatform clientPlatform = mock(ClientPlatform.class);
 	
 	@Test
 	void whenValidDataThenFreeReviewWithCorrectFieldsIsCreated() {
