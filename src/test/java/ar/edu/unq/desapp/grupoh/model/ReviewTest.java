@@ -11,6 +11,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
+import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
+import ar.edu.unq.desapp.grupoh.model.Review.Review;
+
 public class ReviewTest {
 	private ClientPlatform clientPlatform = mock(ClientPlatform.class);
 	

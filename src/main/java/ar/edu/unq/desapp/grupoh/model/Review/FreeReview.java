@@ -1,8 +1,9 @@
-package ar.edu.unq.desapp.grupoh.model;
+package ar.edu.unq.desapp.grupoh.model.Review;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
