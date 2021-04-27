@@ -18,11 +18,11 @@ public class FreeReview extends Review {
 	private String country;
 
 	public FreeReview(
-		String description, String fullDescription, Integer rating, Boolean spoilerAlert, LocalDate date,
+		Long id, String description, String fullDescription, Integer rating, Boolean spoilerAlert, LocalDate date,
 		ClientPlatform originPlatform, String platformUserId, String nickname, String language, String country,
 		Integer score, List<String> reports
 	) {
-		super(description, fullDescription, rating, date, originPlatform, platformUserId, language, score, reports);
+		super(id, description, fullDescription, rating, date, originPlatform, platformUserId, language, score, reports);
 		this.nickname = nickname;
 		this.spoilerAlert = spoilerAlert;
 		this.country = country;

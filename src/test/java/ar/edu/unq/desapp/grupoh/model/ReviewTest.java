@@ -21,6 +21,7 @@ public class ReviewTest {
 	@Test
 	void whenValidDataThenFreeReviewWithCorrectFieldsIsCreated() {
 		FreeReview freeReview = new FreeReview();
+		freeReview.setId(Long.valueOf("33"));
 		freeReview.setCountry("USA");
 		freeReview.setDate(LocalDate.now());
 		freeReview.setDescription("Desc");
@@ -34,6 +35,7 @@ public class ReviewTest {
 		freeReview.setLikeDislikeScore(2);
 		freeReview.setUserReports(Arrays.asList("r0", "r1"));
 		
+		assertTrue(Long.class.isInstance(freeReview.getId()));
 		assertTrue(String.class.isInstance(freeReview.getCountry()));
 		assertTrue(LocalDate.class.isInstance(freeReview.getDate()));
 		assertTrue(String.class.isInstance(freeReview.getDescription()));
@@ -51,6 +53,7 @@ public class ReviewTest {
 	@Test
 	void whenValidDataThenPremiumReviewWithCorrectFieldsIsCreated() {
 		PremiumReview premiumReview = new PremiumReview();
+		premiumReview.setId(Long.valueOf("33"));
 		premiumReview.setDate(LocalDate.now());
 		premiumReview.setDescription("Desc");
 		premiumReview.setFullDescription("FullDesc");
@@ -62,10 +65,11 @@ public class ReviewTest {
 		premiumReview.setUserReports(Arrays.asList("r0", "r1"));
 		
 		PremiumReview premiumReview2 = new PremiumReview(
-			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
+			Long.valueOf("33"), "testPremiumReview", "testFullDescription", 1, LocalDate.now(),
 			this.clientPlatform, "id0", "English", 3, Arrays.asList("")
 		);
 		
+		assertTrue(Long.class.isInstance(premiumReview.getId()));
 		assertTrue(LocalDate.class.isInstance(premiumReview.getDate()));
 		assertTrue(String.class.isInstance(premiumReview.getDescription()));
 		assertTrue(String.class.isInstance(premiumReview.getFullDescription()));
@@ -84,7 +88,7 @@ public class ReviewTest {
 		String nickname = "testUser";
 		String country = "Argentina";
 		FreeReview freeReview = new FreeReview(
-			"testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
+			Long.valueOf("33"), "testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
 			this.clientPlatform, "id0", nickname, "English", country, 2, Arrays.asList("")
 		);
 		

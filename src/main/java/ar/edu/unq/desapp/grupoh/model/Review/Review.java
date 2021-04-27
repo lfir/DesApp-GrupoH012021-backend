@@ -14,13 +14,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class Review {
-	String description;
-	String fullDescription;
-	Integer rating;
-	LocalDate date;
-	ClientPlatform originPlatform;
-	String platformUserId;
-	String language;
-	Integer likeDislikeScore;
-	List<String> userReports;
+	private Long id;
+	private String description;
+	private String fullDescription;
+	private Integer rating;
+	private LocalDate date;
+	private ClientPlatform originPlatform;
+	private String platformUserId;
+	private String language;
+	private Integer likeDislikeScore;
+	private List<String> userReports;
 }
