@@ -12,7 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FreeReview extends Review {
-	
 	private Boolean spoilerAlert;
 	private String nickname;
 	private String country;

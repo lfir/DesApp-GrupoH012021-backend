@@ -24,4 +24,8 @@ public abstract class Review {
 	private String language;
 	private Integer likeDislikeScore;
 	private List<String> userReports;
+	
+	public void updateLikeDislikeScore(Integer value) {
+		this.setLikeDislikeScore(this.getLikeDislikeScore() + value);
+	}
 }

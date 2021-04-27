@@ -110,4 +110,16 @@ public class ReviewTest {
 		
 		assertEquals(0, res.size());
 	}
+	
+	@Test
+	void whenMethodUpdateLikeDislikeScoreIsCalledWithValueSixThePreviousScoreIsIncreasedBySix() {
+		PremiumReview review = new PremiumReview(
+			Long.valueOf("33"), "testPremiumReview", "testFullDescription", 1, LocalDate.now(),
+			this.clientPlatform, "id0", "English", 3, Arrays.asList("")
+		);
+		
+		review.updateLikeDislikeScore(6);
+		
+		assertEquals(9, review.getLikeDislikeScore());
+	}
 }

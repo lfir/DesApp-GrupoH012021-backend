@@ -17,7 +17,7 @@ public class ReviewRepository {
 	public void updateLikeDislikeScore(Long id, Integer value) {
 		for (Review r: this.reviews ) {
 			if (r.getId().equals(id)) {
-				r.setLikeDislikeScore(r.getLikeDislikeScore() + value);
+				r.updateLikeDislikeScore(value);
 			}
 		}
 	}
