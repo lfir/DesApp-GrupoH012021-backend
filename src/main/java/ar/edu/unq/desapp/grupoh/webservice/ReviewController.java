@@ -17,7 +17,7 @@ public class ReviewController {
 	private final ReviewService reviewService = new ReviewService();
 	
 	@CrossOrigin
-    @PostMapping("/reviews")
+    @PostMapping("/api/reviews")
     @ResponseBody
     public ResponseEntity createAndSaveNewReview(@RequestBody ReviewRequestBody requestBody) {
 		this.reviewService.add(requestBody);
@@ -25,7 +25,7 @@ public class ReviewController {
 	}
 	
 	@CrossOrigin
-	@PutMapping("/reviews/{id}")
+	@PutMapping("/api/reviews/{id}")
 	@ResponseBody
 	public ResponseEntity updateReviewUserValue(@PathVariable(value = "id") Long id, @RequestBody String requestBody) {
 		this.reviewService.updateLikeDislikeScore(id, requestBody);
