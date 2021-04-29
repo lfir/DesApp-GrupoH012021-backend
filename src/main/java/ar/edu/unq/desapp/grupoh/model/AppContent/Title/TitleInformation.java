@@ -1,5 +1,10 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent.Title;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class TitleInformation {
     String titleType;
     String primaryTitle;

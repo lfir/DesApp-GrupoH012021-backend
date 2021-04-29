@@ -1,5 +1,10 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Episode extends PlatformContent{
     Integer seasonNumber;
     Integer episodeNumber;

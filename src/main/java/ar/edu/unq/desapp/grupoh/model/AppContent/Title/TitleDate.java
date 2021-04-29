@@ -1,12 +1,17 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent.Title;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+
+@Getter
+@Setter
 public class TitleDate {
-    Date startYear;
-    Date endYear;
+    LocalDate startYear;
+    LocalDate endYear;
 
-    public TitleDate (Date startYear, Date endYear) {
+    public TitleDate (LocalDate startYear, LocalDate endYear) {
         this.startYear = startYear;
         this.endYear = endYear;
     }

@@ -1,19 +1,21 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent.Title;
 
 import ar.edu.unq.desapp.grupoh.model.AppContent.PlatformContent;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Title extends PlatformContent {
     TitleInformation titleInformation;
     Boolean isAdult;
     TitleDate titleDate;
     Integer runtimeMinutes ;
-    ArrayList<String> genres;
+    List<String> genres;
     Crew crew;
-    ArrayList<Principals> principals;
+    List<Principals> principals;
 
-    public Title (TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes ,ArrayList<String> genres, Crew crew, ArrayList<Principals> principals) {
+    public Title (TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes ,List<String> genres, Crew crew, List<Principals> principals) {
         this.titleInformation = titleInformation;
         this.isAdult = isAdult;
         this.titleDate = titleDate;
