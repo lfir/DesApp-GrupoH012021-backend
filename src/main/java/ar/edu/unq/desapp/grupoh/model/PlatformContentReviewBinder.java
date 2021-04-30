@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoh.model;
 
 import java.util.List;
 
-import ar.edu.unq.desapp.grupoh.model.AppContent.PlatformContent;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
