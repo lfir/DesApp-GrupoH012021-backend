@@ -14,7 +14,7 @@ public class ReviewService {
 	private Long reviewId = Long.valueOf("0");
 	
 	public void add(ReviewRequestBody requestBody) {
-		if (requestBody.getCountry() == null) {
+		/*if (requestBody.getCountry() == null) {
 			this.review = new PremiumReview(
 				this.reviewId,
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), requestBody.getDate(),
@@ -29,7 +29,7 @@ public class ReviewService {
 				requestBody.getPlatformUserId(), requestBody.getNickname(), requestBody.getLanguage(),
 				requestBody.getCountry(), requestBody.getLikeDislikeScore(), requestBody.getUserReports()	
 			);
-		}
+		}*/
 		this.reviewId++;
 		this.reviewRepository.add(review);
 	}
