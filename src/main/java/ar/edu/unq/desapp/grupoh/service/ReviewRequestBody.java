@@ -7,7 +7,7 @@ import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import lombok.Getter;
 
 @Getter
-public class AddReviewRequestBody {
+public class ReviewRequestBody {
 	private String description;
 	private String fullDescription;
 	private Integer rating;
@@ -20,5 +20,4 @@ public class AddReviewRequestBody {
 	private String country;
 	private Integer likeDislikeScore;
 	private List<String> userReports;
-	private String contentId;
 }

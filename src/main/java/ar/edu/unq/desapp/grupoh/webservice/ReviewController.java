@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unq.desapp.grupoh.service.AddReviewRequestBody;
+import ar.edu.unq.desapp.grupoh.service.ReviewRequestBody;
 import ar.edu.unq.desapp.grupoh.service.ReviewService;
 
 @RestController
@@ -19,7 +19,7 @@ public class ReviewController {
 	@CrossOrigin
     @PostMapping("/api/reviews")
     @ResponseBody
-    public ResponseEntity createAndSaveNewReview(@RequestBody AddReviewRequestBody requestBody) {
+    public ResponseEntity createAndSaveNewReview(@RequestBody ReviewRequestBody requestBody) {
 		this.reviewService.add(requestBody);
 		return ResponseEntity.ok("Registered a new review.");
 	}
