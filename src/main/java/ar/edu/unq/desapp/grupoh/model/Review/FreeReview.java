@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupoh.model.Review;
 
 import java.time.LocalDate;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@DiscriminatorValue("free")
 public class FreeReview extends Review {
 	private Boolean spoilerAlert;
 	private String nickname;
