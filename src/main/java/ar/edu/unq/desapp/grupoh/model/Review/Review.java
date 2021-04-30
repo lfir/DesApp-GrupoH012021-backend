@@ -1,14 +1,11 @@
 package ar.edu.unq.desapp.grupoh.model.Review;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
