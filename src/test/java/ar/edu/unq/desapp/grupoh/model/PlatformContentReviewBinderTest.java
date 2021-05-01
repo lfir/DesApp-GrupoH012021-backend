@@ -8,9 +8,9 @@ import static org.mockito.Mockito.mock;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import org.junit.jupiter.api.Test;
 
-import ar.edu.unq.desapp.grupoh.model.AppContent.PlatformContent;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 
 public class PlatformContentReviewBinderTest {

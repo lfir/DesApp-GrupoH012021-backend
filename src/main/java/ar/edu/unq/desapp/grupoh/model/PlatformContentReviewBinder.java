@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupoh.model;
 
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import ar.edu.unq.desapp.grupoh.model.AppContent.PlatformContent;
+
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
+
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
