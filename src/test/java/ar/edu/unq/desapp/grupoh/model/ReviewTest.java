@@ -16,8 +16,6 @@ import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 
 public class ReviewTest {
-	private ClientPlatform clientPlatform = mock(ClientPlatform.class);
-	
 	@Test
 	void whenValidDataThenFreeReviewWithCorrectFieldsIsCreated() {
 		FreeReview freeReview = new FreeReview();
@@ -28,12 +26,12 @@ public class ReviewTest {
 		freeReview.setFullDescription("FullDesc");
 		freeReview.setLanguage("Russian");
 		freeReview.setNickname("testNickname");
-		freeReview.setOriginPlatform(this.clientPlatform);
+		freeReview.setOriginPlatformName("Netflix");
 		freeReview.setPlatformUserId("uid0");
 		freeReview.setRating(2);
 		freeReview.setSpoilerAlert(Boolean.TRUE);
 		freeReview.setLikeDislikeScore(2);
-		freeReview.setUserReports(Arrays.asList("r0", "r1"));
+		freeReview.setUserReports("");
 		
 		assertTrue(Long.class.isInstance(freeReview.getId()));
 		assertTrue(String.class.isInstance(freeReview.getCountry()));
@@ -42,12 +40,12 @@ public class ReviewTest {
 		assertTrue(String.class.isInstance(freeReview.getFullDescription()));
 		assertTrue(String.class.isInstance(freeReview.getLanguage()));
 		assertTrue(String.class.isInstance(freeReview.getNickname()));
-		assertTrue(ClientPlatform.class.isInstance(freeReview.getOriginPlatform()));
+		assertTrue(String.class.isInstance(freeReview.getOriginPlatformName()));
 		assertTrue(String.class.isInstance(freeReview.getPlatformUserId()));
 		assertTrue(Integer.class.isInstance(freeReview.getRating()));
 		assertTrue(Boolean.class.isInstance(freeReview.getSpoilerAlert()));
 		assertTrue(Integer.class.isInstance(freeReview.getLikeDislikeScore()));
-		assertTrue(String.class.isInstance(freeReview.getUserReports().get(0)));
+		assertTrue(String.class.isInstance(freeReview.getUserReports()));
 	}
 	
 	@Test
@@ -58,15 +56,15 @@ public class ReviewTest {
 		premiumReview.setDescription("Desc");
 		premiumReview.setFullDescription("FullDesc");
 		premiumReview.setLanguage("Russian");
-		premiumReview.setOriginPlatform(this.clientPlatform);
+		premiumReview.setOriginPlatformName("Netflix");
 		premiumReview.setPlatformUserId("uid0");
 		premiumReview.setRating(2);
 		premiumReview.setLikeDislikeScore(5);
-		premiumReview.setUserReports(Arrays.asList("r0", "r1"));
+		premiumReview.setUserReports("r0");
 		
 		PremiumReview premiumReview2 = new PremiumReview(
-			Long.valueOf("33"), "testPremiumReview", "testFullDescription", 1, LocalDate.now(),
-			this.clientPlatform, "id0", "English", 3, Arrays.asList("")
+			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
+			"Netflix", "id0", "English", 3, ""
 		);
 		
 		assertTrue(Long.class.isInstance(premiumReview.getId()));
@@ -74,11 +72,11 @@ public class ReviewTest {
 		assertTrue(String.class.isInstance(premiumReview.getDescription()));
 		assertTrue(String.class.isInstance(premiumReview.getFullDescription()));
 		assertTrue(String.class.isInstance(premiumReview.getLanguage()));
-		assertTrue(ClientPlatform.class.isInstance(premiumReview.getOriginPlatform()));
+		assertTrue(String.class.isInstance(premiumReview.getOriginPlatformName()));
 		assertTrue(String.class.isInstance(premiumReview.getPlatformUserId()));
 		assertTrue(Integer.class.isInstance(premiumReview.getRating()));
 		assertTrue(Integer.class.isInstance(premiumReview.getLikeDislikeScore()));
-		assertTrue(String.class.isInstance(premiumReview.getUserReports().get(0)));
+		assertTrue(String.class.isInstance(premiumReview.getUserReports()));
 		assertTrue(PremiumReview.class.isInstance(premiumReview2));
 	}
 
@@ -88,8 +86,8 @@ public class ReviewTest {
 		String nickname = "testUser";
 		String country = "Argentina";
 		FreeReview freeReview = new FreeReview(
-			Long.valueOf("33"), "testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
-			this.clientPlatform, "id0", nickname, "English", country, 2, Arrays.asList("")
+			"testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
+			"Netflix", "id0", nickname, "English", country, 2, ""
 		);
 		
 		assertEquals(spoilerAlert, freeReview.getSpoilerAlert());
@@ -114,8 +112,8 @@ public class ReviewTest {
 	@Test
 	void whenMethodUpdateLikeDislikeScoreIsCalledWithValueSixThePreviousScoreIsIncreasedBySix() {
 		PremiumReview review = new PremiumReview(
-			Long.valueOf("33"), "testPremiumReview", "testFullDescription", 1, LocalDate.now(),
-			this.clientPlatform, "id0", "English", 3, Arrays.asList("")
+			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
+			"Amazon", "id0", "English", 3, ""
 		);
 		
 		review.updateLikeDislikeScore(6);

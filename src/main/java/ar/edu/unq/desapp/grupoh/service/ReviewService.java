@@ -1,37 +1,40 @@
 package ar.edu.unq.desapp.grupoh.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
 import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
+import ar.edu.unq.desapp.grupoh.persistence.PlatformContentReviewBinderRepository;
 import ar.edu.unq.desapp.grupoh.persistence.ReviewRepository;
 
 @Service
 public class ReviewService {
-	private final ReviewRepository reviewRepository = new ReviewRepository();
+	@Autowired
+	private PlatformContentReviewBinderRepository binderRepository;
+	@Autowired
+	private ReviewRepository reviewRepository;
 	private Review review;
-	private Long reviewId = Long.valueOf("0");
 	
 	public void add(ReviewRequestBody requestBody) {
 		if (requestBody.getCountry() == null) {
 			this.review = new PremiumReview(
-				this.reviewId,
-				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), requestBody.getDate(),
-				requestBody.getOriginPlatform(), requestBody.getPlatformUserId(), requestBody.getLanguage(),
-				requestBody.getLikeDislikeScore(), requestBody.getUserReports()
+				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
+				requestBody.getDate(), requestBody.getOriginPlatformName(), requestBody.getPlatformUserId(), 
+				requestBody.getLanguage(), 0, ""
 			);
 		} else {
 			this.review = new FreeReview(
-				this.reviewId,
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
-				requestBody.getSpoilerAlert(), requestBody.getDate(), requestBody.getOriginPlatform(),
+				requestBody.getSpoilerAlert(), requestBody.getDate(), requestBody.getOriginPlatformName(),
 				requestBody.getPlatformUserId(), requestBody.getNickname(), requestBody.getLanguage(),
-				requestBody.getCountry(), requestBody.getLikeDislikeScore(), requestBody.getUserReports()	
+				requestBody.getCountry(), 0, ""
 			);
 		}
-		this.reviewId++;
-		this.reviewRepository.add(review);
+		
 	}
 
 	public void updateLikeDislikeScore(Long id, String requestBody) {
@@ -40,6 +43,10 @@ public class ReviewService {
 		if (isDislike) {
 			value = -1;
 		}
-		this.reviewRepository.updateLikeDislikeScore(id, value);
+		
+		Optional<Review> maybeReview = this.reviewRepository.findById(id);
+		Review review = maybeReview.get();
+		review.updateLikeDislikeScore(value);
+		this.reviewRepository.save(review);
 	}
 }

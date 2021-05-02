@@ -9,16 +9,18 @@ public class ClientPlatformTest {
 	void whenValidDataThenClientPlatformWithCorrectFieldsIsCreated() {
 		ClientPlatform cp = new ClientPlatform();
 		cp.setApiKey("testapikey0");
-		cp.setId("id0");
+		cp.setId(Long.valueOf("0"));
 		cp.setPassword("testPassword");
 		cp.setUsername("testClientPlatformUsername");
+		cp.setPlatformName("Netflix");
 		
-		ClientPlatform cp2 = new ClientPlatform("testapikey1", "id1", "testPassword2", "testClientPlatformUsername2");
+		ClientPlatform cp2 = new ClientPlatform("testClientPlatformUsername2", "testPassword2", "testapikey1", "Netflix");
 		
 		assertTrue(String.class.isInstance(cp.getApiKey()));
-		assertTrue(String.class.isInstance(cp.getId()));
+		assertTrue(Long.class.isInstance(cp.getId()));
 		assertTrue(String.class.isInstance(cp.getPassword()));
 		assertTrue(String.class.isInstance(cp.getUsername()));
+		assertTrue(String.class.isInstance(cp.getPlatformName()));
 		assertTrue(ClientPlatform.class.isInstance(cp2));
 	}
 }

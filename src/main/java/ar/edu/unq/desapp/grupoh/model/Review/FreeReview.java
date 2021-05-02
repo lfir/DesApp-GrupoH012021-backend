@@ -1,9 +1,10 @@
 package ar.edu.unq.desapp.grupoh.model.Review;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,17 +12,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity
+@DiscriminatorValue("free")
 public class FreeReview extends Review {
 	private Boolean spoilerAlert;
 	private String nickname;
 	private String country;
 
 	public FreeReview(
-		Long id, String description, String fullDescription, Integer rating, Boolean spoilerAlert, LocalDate date,
-		ClientPlatform originPlatform, String platformUserId, String nickname, String language, String country,
-		Integer score, List<String> reports
+		String description, String fullDescription, Integer rating, Boolean spoilerAlert, LocalDate date,
+		String originPlatform, String platformUserId, String nickname, String language, String country,
+		Integer score, String reports
 	) {
-		super(id, description, fullDescription, rating, date, originPlatform, platformUserId, language, score, reports);
+		super(description, fullDescription, rating, date, originPlatform, platformUserId, language, score, reports);
 		this.nickname = nickname;
 		this.spoilerAlert = spoilerAlert;
 		this.country = country;
