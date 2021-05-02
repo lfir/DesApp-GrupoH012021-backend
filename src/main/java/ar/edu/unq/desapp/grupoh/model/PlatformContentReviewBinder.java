@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.OneToOne;
 
 import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
@@ -24,7 +24,7 @@ public class PlatformContentReviewBinder {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Transient
+	@OneToOne
 	private PlatformContent platformContent;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Review> reviews;
