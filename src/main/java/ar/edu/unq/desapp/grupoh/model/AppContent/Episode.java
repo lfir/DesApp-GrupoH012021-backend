@@ -13,7 +13,6 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorColumn(name = "episode")
 public class Episode extends PlatformContent {
     Integer seasonNumber;
     Integer episodeNumber;
