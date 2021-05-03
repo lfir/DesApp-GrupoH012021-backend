@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
+@DiscriminatorValue("episode")
 public class Episode extends PlatformContent {
     Integer seasonNumber;
     Integer episodeNumber;

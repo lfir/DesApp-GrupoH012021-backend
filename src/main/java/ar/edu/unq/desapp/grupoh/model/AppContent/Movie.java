@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorColumn(name = "movie")
+@DiscriminatorValue("movie")
 public class Movie extends PlatformContent {
     public Movie(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes, List<Genre> genres, Crew crew, List<Principal> principals) {
         super(titleId, titleInformation, isAdult, titleDate, runtimeMinutes, genres, crew, principals);
