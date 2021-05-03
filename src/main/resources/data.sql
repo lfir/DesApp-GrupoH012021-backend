@@ -119,8 +119,33 @@ VALUES('episode', 6, false, 60, 2, 1, 4, 4, 4);
 INSERT INTO platform_content (platform_content, title_id, is_adult, runtime_minutes, episode_number, season_number, crew_id, title_date_id, title_information_id)
 VALUES('episode', 7, false, 60, 3, 1, 4, 4, 4);
 ---------------------
-INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) values (4,5);
-INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) values (4,6);
-INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) values (4,7);
+INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUES (4,5);
+INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUES (4,6);
+INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUES (4,7);
 
 ------------------------------------------------------------------------------------------------------------------------
+-- Reviews Ricardo
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
+VALUES('premium', 1, '2021-04-23', 'La pelicula es mala', 'Muy mala pelicula', 'Spanish', 2, 'Netflix', 243, 0, 1, 'Argentina', 'Ricardo123', false );
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
+VALUES('premium', 2, '2021-04-23', 'Pelicula aburrida', 'Muy aburrida', 'Spanish', 2, 'Netflix', 243, 0, 2, 'Argentina', 'Ricardo123', false );
+--------------------------------------------------------------------------------
+
+-- Reviews nestor
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
+VALUES('free', 3, '2019-04-23', 'Excelente pelicula', '+5 y a favoritos', 'Spanish', 2, 'Amazon', 243, 0, 2, 'Argentina', 'nestor123', false );
+
+
+--- binding with platform content
+INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (1,1);
+INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (2,2);
+INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (3,3);
+INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (4,4);
+
+-- binding with reviews
+INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (1,1);
+INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (1,3);
+INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (2,2);
