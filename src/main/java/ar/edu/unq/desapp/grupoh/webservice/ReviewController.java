@@ -1,14 +1,19 @@
 package ar.edu.unq.desapp.grupoh.webservice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.edu.unq.desapp.grupoh.model.Review.Review;
 import ar.edu.unq.desapp.grupoh.service.ReviewRequestBody;
 import ar.edu.unq.desapp.grupoh.service.ReviewService;
 
@@ -16,16 +21,23 @@ import ar.edu.unq.desapp.grupoh.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	private final String commonPath = "/api/reviews";
 	
 	@CrossOrigin
-    @PostMapping("/api/reviews")
+    @PostMapping(commonPath)
     public ResponseEntity<String> createAndSaveNewReview(@RequestBody ReviewRequestBody requestBody) {
 		this.reviewService.add(requestBody);
 		return ResponseEntity.ok("Registered a new review.");
 	}
 	
 	@CrossOrigin
-	@PutMapping("/api/reviews/{id}")
+	@GetMapping(commonPath)
+	public ResponseEntity<List<Review>> getReviewsOfContent(@RequestParam(value = "contentimdbid", required = true) String contentImdbId) {
+		return ResponseEntity.ok(this.reviewService.get(contentImdbId));
+	}
+	
+	@CrossOrigin
+	@PutMapping(commonPath + "/{id}")
 	public ResponseEntity<String> updateReviewUserValue(@PathVariable(value = "id") Long id, @RequestBody String requestBody) {
 		this.reviewService.updateLikeDislikeScore(id, requestBody);
 		return ResponseEntity.ok("Updated like/dislike score of the review.");

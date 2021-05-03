@@ -1,10 +1,13 @@
 package ar.edu.unq.desapp.grupoh.service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
 import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
@@ -35,6 +38,13 @@ public class ReviewService {
 			);
 		}
 		
+		PlatformContentReviewBinder binder = this.binderRepository.findByContentImdbId(requestBody.getContentImdbId());
+		if (binder.getReviews() == null) {
+			binder.setReviews(Arrays.asList(this.review));
+		} else {
+			binder.getReviews().add(this.review);
+		}
+		this.binderRepository.save(binder);
 	}
 
 	public void updateLikeDislikeScore(Long id, String requestBody) {
@@ -48,5 +58,10 @@ public class ReviewService {
 		Review review = maybeReview.get();
 		review.updateLikeDislikeScore(value);
 		this.reviewRepository.save(review);
+	}
+
+	public List<Review> get(String contentImdbId) {
+		PlatformContentReviewBinder binder = this.binderRepository.findByContentImdbId(contentImdbId);
+		return binder.getReviews();
 	}
 }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @DiscriminatorColumn(name = "review_type")
 public abstract class Review {
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String description;
 	private String fullDescription;
