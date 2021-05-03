@@ -1,0 +1,21 @@
+
+---------------------------------------------------------------------
+TAG 1.0.0
+---------------------------------------------------------------------
+NEW FEATURES:
+* CI builds (Travis).
+* Code coverage (Codacy).
+* Cloud environment (Heroku).
+* Endpoint to create a new review.
+* Endpoint to value an existing review (like/dislike).
+* Endpoint to get the specific reviews of a given platform content (movie, series or episode).
+
+NOTES:
+Features not developed in this release:
+* Request data validation.
+* Error handling during request processing.
+* Additional endpoints.
+
+KNOWN ISSUES:
+* 
+
