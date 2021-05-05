@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MovieTest {
 
@@ -30,7 +31,9 @@ public class MovieTest {
         ArrayList<Principal> actors = new ArrayList<>();
         actors.add(actor);
         Movie movie = new Movie(titleId, titleInformation, false, titleDate, 54, genres, crew, actors);
+        Movie movie2 = new Movie();
 
+        assertTrue(Movie.class.isInstance(movie2));
         assertEquals(movie.getTitleId(), titleId);
 
         // Title asserts

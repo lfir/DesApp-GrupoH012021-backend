@@ -21,9 +21,11 @@ public class PlatformContentReviewBinderTest {
 		List<Review> reviews = Arrays.asList(review);
 		
 		PlatformContentReviewBinder platformContentReviewBinder = new PlatformContentReviewBinder();
+		platformContentReviewBinder.setId(Long.valueOf("2"));
 		platformContentReviewBinder.setPlatformContent(platformContent);
 		platformContentReviewBinder.setReviews(reviews);
 		
+		assertTrue(Long.class.isInstance(platformContentReviewBinder.getId()));
 		assertTrue(PlatformContent.class.isInstance(platformContentReviewBinder.getPlatformContent()));
 		assertTrue(Review.class.isInstance(platformContentReviewBinder.getReviews().get(0)));
 	}
