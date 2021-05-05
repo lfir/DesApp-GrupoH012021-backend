@@ -1,16 +1,20 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent;
 
-import ar.edu.unq.desapp.grupoh.model.AppContent.Title.*;
-import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.List;
+
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.Crew;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.Genre;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.Principal;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.TitleDate;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.TitleInformation;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

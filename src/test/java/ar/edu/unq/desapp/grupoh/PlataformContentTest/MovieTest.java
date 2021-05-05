@@ -62,6 +62,5 @@ public class MovieTest {
         assertEquals(movie.getPrincipals().get(0).getCategory(), actors.get(0).getCategory());
         assertEquals(movie.getPrincipals().get(0).getJob(), actors.get(0).getJob());
         assertEquals(movie.getPrincipals().get(0).getCharacters(), actors.get(0).getCharacters());
-
     }
 }

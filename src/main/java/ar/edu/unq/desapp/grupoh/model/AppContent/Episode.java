@@ -1,14 +1,12 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Getter
 @Setter
