@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
@@ -22,6 +23,7 @@ public class ReviewService {
 	private ReviewRepository reviewRepository;
 	private Review review;
 	
+	@Transactional
 	public void add(ReviewRequestBody requestBody) {
 		if (requestBody.getCountry() == null) {
 			this.review = new PremiumReview(
@@ -47,6 +49,7 @@ public class ReviewService {
 		this.binderRepository.save(binder);
 	}
 
+	@Transactional
 	public void updateLikeDislikeScore(Long id, String requestBody) {
 		Integer value = 1;
 		Boolean isDislike = requestBody.contains("dislike");
