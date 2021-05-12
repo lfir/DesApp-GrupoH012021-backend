@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Getter;
 
 @Getter
-public class ReviewRequestBody {
+public class AddReviewRequestBody {
 	private String description;
 	private String fullDescription;
 	private Integer rating;

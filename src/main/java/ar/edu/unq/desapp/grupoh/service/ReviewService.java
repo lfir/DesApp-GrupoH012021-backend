@@ -24,7 +24,7 @@ public class ReviewService {
 	private Review review;
 	
 	@Transactional
-	public void add(ReviewRequestBody requestBody) {
+	public void add(AddReviewRequestBody requestBody) {
 		if (requestBody.getCountry() == null) {
 			this.review = new PremiumReview(
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
