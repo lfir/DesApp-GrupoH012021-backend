@@ -32,8 +32,26 @@ public class ReviewController {
 	
 	@CrossOrigin
 	@GetMapping(commonPath)
-	public ResponseEntity<List<Review>> getReviewsOfContent(@RequestParam(value = "contentimdbid", required = true) String contentImdbId) {
-		return ResponseEntity.ok(this.reviewService.get(contentImdbId));
+	public ResponseEntity<List<Review>> getReviewsOfContent(
+		@RequestParam(value = "contentimdbid") String contentImdbId,
+		@RequestParam(value = "pagenumber") Integer pageNumber,
+		@RequestParam(value = "pagesize") Integer pageSize,
+		@RequestParam(value = "reviewtype", required = false) String reviewType,
+		@RequestParam(value = "platformname", required = false) String originPlatformName,
+		@RequestParam(value = "spoileralert", required = false) Boolean spoilerAlert,
+		@RequestParam(value = "language", required = false) String language,
+		@RequestParam(value = "country", required = false) String country,
+		@RequestParam(value = "ratingascending", required = false) Boolean ratingAscending,
+		@RequestParam(value = "ratingdescending", required = false) Boolean ratingDescending,
+		@RequestParam(value = "dateascending", required = false) Boolean dateAscending,
+		@RequestParam(value = "datedescending", required = false) Boolean dateDescending
+	) {
+		return ResponseEntity.ok(
+			this.reviewService.get(
+				contentImdbId, pageNumber, pageSize, reviewType, originPlatformName, spoilerAlert,
+				language, country, ratingAscending, ratingDescending, dateAscending, dateDescending
+			)
+		);
 	}
 	
 	@CrossOrigin
