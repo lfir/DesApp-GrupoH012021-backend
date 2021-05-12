@@ -123,21 +123,6 @@ INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUE
 INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUES (4,6);
 INSERT INTO platform_content_episodes (series_title_id, episodes_title_id) VALUES (4,7);
 
-------------------------------------------------------------------------------------------------------------------------
--- Reviews Ricardo
-
-INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
-VALUES('premium', 1, '2021-04-23', 'La pelicula es mala', 'Muy mala pelicula', 'Spanish', 2, 'Netflix', 243, 0, 1, 'Argentina', 'Ricardo123', false );
-
-INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
-VALUES('premium', 2, '2021-04-23', 'Pelicula aburrida', 'Muy aburrida', 'Spanish', 2, 'Netflix', 243, 0, 2, 'Argentina', 'Ricardo123', false );
---------------------------------------------------------------------------------
-
--- Reviews nestor
-
-INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert)
-VALUES('free', 3, '2019-04-23', 'Excelente pelicula', '+5 y a favoritos', 'Spanish', 2, 'Amazon', 243, 0, 2, 'Argentina', 'nestor123', false );
-
 
 --- binding with platform content
 INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (1,1);
@@ -145,7 +130,25 @@ INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUE
 INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (3,3);
 INSERT INTO platform_content_review_binder (id, platform_content_title_id) VALUES (4,4);
 
+
+------------------------------------------------------------------------------------------------------------------------
+-- Reviews Ricardo
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert, binder_id)
+VALUES('premium', 1, '2021-04-23', 'La pelicula es mala', 'Muy mala pelicula', 'Spanish', 2, 'Netflix', 243, 3, 1, 'Argentina', 'Ricardo123', false, 1);
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert, binder_id)
+VALUES('premium', 2, '2021-04-23', 'Pelicula aburrida', 'Muy aburrida', 'Spanish', 2, 'Netflix', 243, 0, 2, 'Argentina', 'Ricardo123', false, 2);
+--------------------------------------------------------------------------------
+
+-- Reviews nestor
+
+INSERT INTO review (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name, platform_user_id, rating, user_reports, country, nickname, spoiler_alert, binder_id)
+VALUES('free', 3, '2019-04-23', 'Excelente pelicula', '+5 y a favoritos', 'Spanish', 2, 'Amazon', 243, 0, 2, 'Argentina', 'nestor123', false, 1);
+
 -- binding with reviews
 INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (1,1);
 INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (1,3);
 INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (2,2);
+
+

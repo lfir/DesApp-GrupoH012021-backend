@@ -9,7 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +37,9 @@ public abstract class Review {
 	private String language;
 	private Integer likeDislikeScore;
 	private String userReports;
+	@JsonIgnore
+	@ManyToOne
+	private PlatformContentReviewBinder binder;
 	
 	public Review(String description, String fullDescription, Integer rating, LocalDate date, String originPlatformName,
 			String platformUserId, String language, Integer likeDislikeScore, String userReports) {
