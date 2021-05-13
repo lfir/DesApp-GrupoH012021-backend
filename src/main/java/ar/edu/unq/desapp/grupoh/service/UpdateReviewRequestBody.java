@@ -1,12 +1,13 @@
 package ar.edu.unq.desapp.grupoh.service;
 
-import org.springframework.lang.NonNull;
+
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 @Builder(builderClassName = "Builder", toBuilder = true)
 @JsonDeserialize(builder = UpdateReviewRequestBody.Builder.class)
