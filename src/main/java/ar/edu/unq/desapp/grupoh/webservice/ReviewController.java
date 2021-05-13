@@ -25,9 +25,9 @@ public class ReviewController {
 	
 	@CrossOrigin
     @PostMapping(commonPath)
-    public ResponseEntity<String> createAndSaveNewReview(@RequestBody AddReviewRequestBody requestBody) {
-		this.reviewService.add(requestBody);
-		return ResponseEntity.ok("Registered a new review.");
+    public ResponseEntity<Review> createAndSaveNewReview(@RequestBody AddReviewRequestBody requestBody) {
+		Review storedReview = this.reviewService.add(requestBody);
+		return ResponseEntity.ok(storedReview);
 	}
 	
 	@CrossOrigin

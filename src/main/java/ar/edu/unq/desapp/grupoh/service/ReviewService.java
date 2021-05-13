@@ -37,7 +37,7 @@ public class ReviewService {
 	private EntityManager entityManager;
 	
 	@Transactional
-	public void add(AddReviewRequestBody requestBody) {
+	public Review add(AddReviewRequestBody requestBody) {
 		if (Objects.isNull(requestBody.getCountry())) {
 			this.review = new PremiumReview(
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
@@ -61,6 +61,7 @@ public class ReviewService {
 			binder.getReviews().add(this.review);
 		}
 		this.binderRepository.save(binder);
+		return binder.getReviews().get(binder.getReviews().size() - 1);
 	}
 
 	@Transactional
