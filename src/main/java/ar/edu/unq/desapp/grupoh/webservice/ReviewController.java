@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoh.webservice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class ReviewController {
     @PostMapping(commonPath)
     public ResponseEntity<Review> createAndSaveNewReview(@RequestBody AddReviewRequestBody requestBody) {
 		Review storedReview = this.reviewService.add(requestBody);
-		return ResponseEntity.ok(storedReview);
+		return ResponseEntity.status(HttpStatus.CREATED).body(storedReview);
 	}
 	
 	@CrossOrigin
