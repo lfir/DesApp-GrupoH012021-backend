@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 import ar.edu.unq.desapp.grupoh.service.AddReviewRequestBody;
 import ar.edu.unq.desapp.grupoh.service.ReviewService;
+import ar.edu.unq.desapp.grupoh.service.UpdateReviewRequestBody;
 
 @RestController
 public class ReviewController {
@@ -57,8 +58,8 @@ public class ReviewController {
 	
 	@CrossOrigin
 	@PutMapping(commonPath + "/{id}")
-	public ResponseEntity<String> updateReviewUserValue(@PathVariable(value = "id") Long id, @RequestBody String requestBody) {
-		this.reviewService.updateLikeDislikeScore(id, requestBody);
-		return ResponseEntity.ok("Updated like/dislike score of the review.");
+	public ResponseEntity<Review> updateReview(@PathVariable(value = "id") Long id, @RequestBody UpdateReviewRequestBody requestBody) {
+		Review updatedReview = this.reviewService.update(id, requestBody);
+		return ResponseEntity.ok(updatedReview);
 	}
 }

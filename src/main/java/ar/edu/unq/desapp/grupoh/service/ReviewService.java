@@ -65,17 +65,23 @@ public class ReviewService {
 	}
 
 	@Transactional
-	public void updateLikeDislikeScore(Long id, String requestBody) {
-		Integer value = 1;
-		Boolean isDislike = requestBody.contains("dislike");
-		if (isDislike) {
-			value = -1;
-		}
-		
+	public Review update(Long id, UpdateReviewRequestBody requestBody) {
 		Optional<Review> maybeReview = this.reviewRepository.findById(id);
 		Review review = maybeReview.get();
-		review.updateLikeDislikeScore(value);
+		if ("likeDislikeScore".equals(requestBody.getAttribute())) {
+			Integer value = 1;
+			Boolean isDislike = "dislike".equals(requestBody.getValue());
+			if (isDislike) {
+				value = -1;
+			}
+			review.updateLikeDislikeScore(value);
+		}
+		if ("userReports".equals(requestBody.getAttribute())) {
+			review.setUserReports(review.getUserReports() + "|" + requestBody.getValue());
+		}
+		
 		this.reviewRepository.save(review);
+		return review;
 	}
 
 	public List<Review> get(
