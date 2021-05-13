@@ -9,7 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 
-@Builder(builderClassName = "Builder", toBuilder = true)
+@Builder(builderClassName = "Builder")
 @JsonDeserialize(builder = UpdateReviewRequestBody.Builder.class)
 @Getter
 public class UpdateReviewRequestBody {
