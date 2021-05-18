@@ -2,8 +2,6 @@ package ar.edu.unq.desapp.grupoh.persistence;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 
 public interface ReviewRepositoryCustom {
