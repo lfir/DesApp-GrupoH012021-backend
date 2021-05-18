@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewRepositoryCustom {
 
 }
