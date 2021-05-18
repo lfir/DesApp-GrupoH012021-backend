@@ -42,7 +42,7 @@ public class ReviewService {
 			this.review = new PremiumReview(
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
 				requestBody.getDate(), requestBody.getOriginPlatformName(), requestBody.getPlatformUserId(), 
-				requestBody.getLanguage(), 0, ""
+				requestBody.getLanguage(), 0
 			);
 		} else {
 			this.review = new FreeReview(
@@ -77,7 +77,8 @@ public class ReviewService {
 			review.updateLikeDislikeScore(value);
 		}
 		if ("userReports".equals(requestBody.getAttribute())) {
-			review.setUserReports(review.getUserReports() + "|" + requestBody.getValue());
+			FreeReview freeReview = (FreeReview) review;
+			freeReview.setUserReports(freeReview.getUserReports() + "|" + requestBody.getValue());
 		}
 		
 		this.reviewRepository.save(review);

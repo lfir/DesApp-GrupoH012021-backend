@@ -36,13 +36,12 @@ public abstract class Review {
 	private String platformUserId;
 	private String language;
 	private Integer likeDislikeScore;
-	private String userReports;
 	@JsonIgnore
 	@ManyToOne
 	private PlatformContentReviewBinder binder;
 	
 	public Review(String description, String fullDescription, Integer rating, LocalDate date, String originPlatformName,
-			String platformUserId, String language, Integer likeDislikeScore, String userReports) {
+			String platformUserId, String language, Integer likeDislikeScore) {
 		this.description = description;
 		this.fullDescription = fullDescription;
 		this.rating = rating;
@@ -51,7 +50,6 @@ public abstract class Review {
 		this.platformUserId = platformUserId;
 		this.language = language;
 		this.likeDislikeScore = likeDislikeScore;
-		this.userReports = userReports;
 	}
 	
 	public void updateLikeDislikeScore(Integer value) {

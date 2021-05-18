@@ -58,11 +58,10 @@ public class ReviewTest {
 		premiumReview.setPlatformUserId("uid0");
 		premiumReview.setRating(2);
 		premiumReview.setLikeDislikeScore(5);
-		premiumReview.setUserReports("r0");
 		
 		PremiumReview premiumReview2 = new PremiumReview(
 			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
-			"Netflix", "id0", "English", 3, ""
+			"Netflix", "id0", "English", 3
 		);
 		
 		assertTrue(Long.class.isInstance(premiumReview.getId()));
@@ -74,32 +73,33 @@ public class ReviewTest {
 		assertTrue(String.class.isInstance(premiumReview.getPlatformUserId()));
 		assertTrue(Integer.class.isInstance(premiumReview.getRating()));
 		assertTrue(Integer.class.isInstance(premiumReview.getLikeDislikeScore()));
-		assertTrue(String.class.isInstance(premiumReview.getUserReports()));
 		assertTrue(PremiumReview.class.isInstance(premiumReview2));
 	}
 
 	@Test
-	void freeReviewHasFieldsSpoilerAlertNicknameAndCountry() {
+	void freeReviewHasFieldsSpoilerAlertNicknameAndCountryAndUserReports() {
 		Boolean spoilerAlert = Boolean.FALSE;
 		String nickname = "testUser";
 		String country = "Argentina";
+		String userReports = "testUserReport";
 		FreeReview freeReview = new FreeReview(
 			"testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
-			"Netflix", "id0", nickname, "English", country, 2, ""
+			"Netflix", "id0", nickname, "English", country, 2, userReports
 		);
 		
 		assertEquals(spoilerAlert, freeReview.getSpoilerAlert());
 		assertEquals(nickname, freeReview.getNickname());
 		assertEquals(country, freeReview.getCountry());
+		assertEquals(userReports, freeReview.getUserReports());
 	}
 	
 	@Test
-	void premiumReviewDoesNotHaveFieldsSpoilerAlertNicknameAndCountry() {
+	void premiumReviewDoesNotHaveFieldsSpoilerAlertNicknameAndCountryAndUserReports() {
 		List<Boolean> res = new ArrayList<Boolean>();
 		
 		for (Field f: Review.class.getDeclaredFields()) {
 			if (f.getName().equals("spoilerAlert") || f.getName().equals("nickname") ||
-				f.getName().equals("country")) {
+				f.getName().equals("country") || f.getName().equals("userReports")) {
 				res.add(Boolean.TRUE);
 			}
 		}
@@ -111,7 +111,7 @@ public class ReviewTest {
 	void whenMethodUpdateLikeDislikeScoreIsCalledWithValueSixThePreviousScoreIsIncreasedBySix() {
 		PremiumReview review = new PremiumReview(
 			"testPremiumReview", "testFullDescription", 1, LocalDate.now(),
-			"Amazon", "id0", "English", 3, ""
+			"Amazon", "id0", "English", 3
 		);
 		
 		review.updateLikeDislikeScore(6);
