@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unq.desapp.grupoh.dao.ClientPlatformDAO;
+import ar.edu.unq.desapp.grupoh.dto.ClientPlatformDTO;
 import ar.edu.unq.desapp.grupoh.service.ClientPlatformService;
 
 @RestController
@@ -22,7 +22,7 @@ public class ClientPlatformController {
 	
 	@CrossOrigin
     @PostMapping(commonPath)
-    public ResponseEntity<Map<String, String>> createAndSaveNewClientPlatform(@RequestBody ClientPlatformDAO requestBody) {
+    public ResponseEntity<Map<String, String>> createAndSaveNewClientPlatform(@RequestBody ClientPlatformDTO requestBody) {
 		String apiKey = this.clientService.add(requestBody);
 		Map<String, String> resMap = new HashMap<String, String>();
 		resMap.put("apiKey", apiKey);

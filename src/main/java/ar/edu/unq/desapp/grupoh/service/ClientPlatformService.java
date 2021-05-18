@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unq.desapp.grupoh.dao.ClientPlatformDAO;
+import ar.edu.unq.desapp.grupoh.dto.ClientPlatformDTO;
 import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import ar.edu.unq.desapp.grupoh.persistence.ClientPlatformRepository;
 
@@ -15,7 +15,7 @@ public class ClientPlatformService {
 	@Autowired
 	private ClientPlatformRepository clientRepository;
 	
-	public String add(ClientPlatformDAO requestBody) {
+	public String add(ClientPlatformDTO requestBody) {
 		String apiKey = UUID.randomUUID().toString();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(requestBody.getPassword());

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoh.dao;
+package ar.edu.unq.desapp.grupoh.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -8,9 +8,9 @@ import lombok.Getter;
 import lombok.NonNull;
 
 @Builder(builderClassName = "Builder")
-@JsonDeserialize(builder = ClientPlatformDAO.Builder.class)
+@JsonDeserialize(builder = ClientPlatformDTO.Builder.class)
 @Getter
-public class ClientPlatformDAO {
+public class ClientPlatformDTO {
 	@NonNull
 	private String username;
 	@NonNull

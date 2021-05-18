@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unq.desapp.grupoh.dao.ReviewDAO;
+import ar.edu.unq.desapp.grupoh.dto.ReviewDTO;
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
 import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
@@ -38,7 +38,7 @@ public class ReviewService {
 	private EntityManager entityManager;
 	
 	@Transactional
-	public Review add(ReviewDAO requestBody) {
+	public Review add(ReviewDTO requestBody) {
 		if (Objects.isNull(requestBody.getCountry())) {
 			this.review = new PremiumReview(
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 

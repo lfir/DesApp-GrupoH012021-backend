@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoh.dao;
+package ar.edu.unq.desapp.grupoh.dto;
 
 import java.time.LocalDate;
 
@@ -10,9 +10,9 @@ import lombok.Getter;
 import lombok.NonNull;
 
 @Builder(builderClassName = "Builder")
-@JsonDeserialize(builder = ReviewDAO.Builder.class)
+@JsonDeserialize(builder = ReviewDTO.Builder.class)
 @Getter
-public class ReviewDAO {
+public class ReviewDTO {
 	@JsonPOJOBuilder(withPrefix = "")
     public static class Builder {}
 	@NonNull

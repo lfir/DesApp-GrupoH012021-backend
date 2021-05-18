@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unq.desapp.grupoh.dao.ReviewDAO;
+import ar.edu.unq.desapp.grupoh.dto.ReviewDTO;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
 import ar.edu.unq.desapp.grupoh.service.ReviewService;
 import ar.edu.unq.desapp.grupoh.service.UpdateReviewRequestBody;
@@ -27,7 +27,7 @@ public class ReviewController {
 	
 	@CrossOrigin
     @PostMapping(commonPath)
-    public ResponseEntity<Review> createAndSaveNewReview(@RequestBody ReviewDAO requestBody) {
+    public ResponseEntity<Review> createAndSaveNewReview(@RequestBody ReviewDTO requestBody) {
 		Review storedReview = this.reviewService.add(requestBody);
 		return ResponseEntity.status(HttpStatus.CREATED).body(storedReview);
 	}
