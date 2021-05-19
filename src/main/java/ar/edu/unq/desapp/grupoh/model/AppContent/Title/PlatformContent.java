@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
+
 import java.util.List;
 
 @Getter
@@ -28,6 +31,8 @@ public abstract class PlatformContent {
     Crew crew;
     @OneToMany
     List<Principal> principals;
+    @OneToOne
+	private PlatformContentReviewBinder binder;
 
     public PlatformContent(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals) {
         this.titleId = titleId;
