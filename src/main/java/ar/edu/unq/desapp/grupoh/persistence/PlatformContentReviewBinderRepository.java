@@ -14,4 +14,7 @@ public interface PlatformContentReviewBinderRepository extends JpaRepository<Pla
 	
 	@Query("SELECT b.id FROM PlatformContentReviewBinder b JOIN b.reviews r WHERE r.rating >= :minVal")
 	List<Long> getIdsWithReviewsOfRatingGTE(@Param("minVal") Integer minVal);
+	
+	@Query("SELECT b.id FROM PlatformContentReviewBinder b JOIN b.reviews r WHERE r.likeDislikeScore >= 1")
+	List<Long> getIdsWithReviewsOfPositiveValue();
 }
