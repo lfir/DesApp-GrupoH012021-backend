@@ -19,6 +19,7 @@ public class Principal {
     String category;
     String job;
     String characters;
+    String name;
 
     public Principal(String category, String job, String characters) {
         this.category = category;

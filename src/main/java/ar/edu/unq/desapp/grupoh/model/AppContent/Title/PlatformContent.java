@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public abstract class PlatformContent {
     @OneToMany
     List<Principal> principals;
     @OneToOne
+    @JsonIgnore
 	private PlatformContentReviewBinder binder;
 
     public PlatformContent(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals) {

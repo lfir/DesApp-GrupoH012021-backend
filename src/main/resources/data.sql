@@ -1,15 +1,15 @@
 -- Pelicula Le saut à la couverture
 INSERT INTO crew (id) VALUES(1);
 
-INSERT INTO principal(id, category, characters, job) VALUES(1, 'self', 'self', 'Director');
+INSERT INTO principal(id, category, characters, job, name) VALUES(1, 'self', 'self', 'Director', 'Bruce Willis');
 
-INSERT INTO principal(id, category, characters, job) VALUES(2, 'self', 'self', 'Writer');
+INSERT INTO principal(id, category, characters, job, name) VALUES(2, 'self', 'self', 'Writer', 'Bruce Willis');
 
 INSERT INTO crew_directors(crew_id, directors_id) VALUES(1, 1);
 
 INSERT INTO crew_writers(crew_id, writers_id) VALUES(1, 2);
 
-INSERT INTO title_date(id, end_year, start_year) VALUES(1, null, '1930-03-10');
+INSERT INTO title_date(id, end_year, start_year) VALUES(1, null, '1930-01-01');
 
 INSERT INTO title_information(id, original_title, primary_title, title_type) VALUES(1, 'Le saut à la couverture', 'Le saut à la couverture', 'short');
 
@@ -26,17 +26,17 @@ INSERT INTO platform_content_principals (platform_content_title_id, principals_i
 -- Pelicula The ball game
 INSERT INTO crew (id) VALUES(2);
 
-INSERT INTO principal(id, category, characters, job) VALUES(3, 'self', 'self', 'Actor');
+INSERT INTO principal(id, category, characters, job, name) VALUES(3, 'self', 'self', 'Actor', 'Bruce Willis');
 
-INSERT INTO principal(id, category, characters, job) VALUES(4, 'self', 'self', 'Director');
+INSERT INTO principal(id, category, characters, job, name) VALUES(4, 'self', 'self', 'Director', 'Bruce Willis');
 
-INSERT INTO principal(id, category, characters, job) VALUES(5, 'self', 'self', 'Writer');
+INSERT INTO principal(id, category, characters, job, name) VALUES(5, 'self', 'self', 'Writer', 'Bruce Willis');
 
 INSERT INTO crew_directors(crew_id, directors_id) VALUES(2, 4);
 
 INSERT INTO crew_writers(crew_id, writers_id) VALUES(2, 5);
 
-INSERT INTO title_date(id, end_year, start_year) VALUES(2, null, '1930-03-10');
+INSERT INTO title_date(id, end_year, start_year) VALUES(2, null, '1934-01-01');
 
 INSERT INTO title_information(id, original_title, primary_title, title_type) VALUES(2, 'The Ball Game', 'The Ball Game', 'short');
 
@@ -56,16 +56,16 @@ INSERT INTO platform_content_principals (platform_content_title_id, principals_i
 
 INSERT INTO crew (id) VALUES(3);
 
-INSERT INTO principal(id, category, characters, job) VALUES(6, 'self', 'self', 'Actor');
+INSERT INTO principal(id, category, characters, job, name) VALUES(6, 'self', 'self', 'Actor', 'Bruce Willis');
 
-INSERT INTO principal(id, category, characters, job) VALUES(7, 'self', 'self', 'Actor');
+INSERT INTO principal(id, category, characters, job, name) VALUES(7, 'self', 'self', 'Actor', 'Bruce Willis');
 
 
 INSERT INTO crew_directors(crew_id, directors_id) VALUES(3, 6);
 
 INSERT INTO crew_writers(crew_id, writers_id) VALUES(3, 7);
 
-INSERT INTO title_date(id, end_year, start_year) VALUES(3, null, '1995-03-10');
+INSERT INTO title_date(id, end_year, start_year) VALUES(3, null, '1995-01-01');
 
 INSERT INTO title_information(id, original_title, primary_title, title_type) VALUES(3, 'Aladdin and the Wonderful Lamp', 'Aladdin and the Wonderful Lamp', 'short');
 
@@ -85,16 +85,16 @@ INSERT INTO platform_content_principals (platform_content_title_id, principals_i
 
 INSERT INTO crew (id) VALUES(4);
 
-INSERT INTO principal(id, category, characters, job) VALUES(8, 'self', 'self', 'Writer');
+INSERT INTO principal(id, category, characters, job, name) VALUES(8, 'self', 'self', 'Writer', 'Bruce Willis');
 
-INSERT INTO principal(id, category, characters, job) VALUES(9, 'self', 'self', 'Director');
+INSERT INTO principal(id, category, characters, job, name) VALUES(9, 'self', 'self', 'Director', 'Bruce Willis');
 
 
 INSERT INTO crew_directors(crew_id, directors_id) VALUES(4, 9);
 
 INSERT INTO crew_writers(crew_id, writers_id) VALUES(4, 8);
 
-INSERT INTO title_date(id, end_year, start_year) VALUES(4, null, '2020-05-10');
+INSERT INTO title_date(id, end_year, start_year) VALUES(4, null, '2020-01-01');
 
 INSERT INTO title_information(id, original_title, primary_title, title_type) VALUES(4, 'Messenger Boy''s Mistake', 'Messenger Boy''s Mistake', 'short');
 
