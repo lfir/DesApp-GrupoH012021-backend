@@ -40,8 +40,10 @@ public abstract class Review {
 	@ManyToOne
 	private PlatformContentReviewBinder binder;
 	
-	public Review(String description, String fullDescription, Integer rating, LocalDate date, String originPlatformName,
-			String platformUserId, String language, Integer likeDislikeScore) {
+	public Review(
+		String description, String fullDescription, Integer rating, LocalDate date, String originPlatformName,
+		String platformUserId, String language, Integer likeDislikeScore
+	) {
 		this.description = description;
 		this.fullDescription = fullDescription;
 		this.rating = rating;

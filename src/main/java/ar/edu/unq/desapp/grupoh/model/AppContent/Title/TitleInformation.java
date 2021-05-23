@@ -15,12 +15,12 @@ import lombok.Setter;
 public class TitleInformation {
     @Id
     @GeneratedValue
-    Long id;
-    String titleType;
-    String primaryTitle;
-    String originalTitle;
+    private Long id;
+    private String titleType;
+    private String primaryTitle;
+    private String originalTitle;
 
-    public TitleInformation (String titleType, String primaryTitle, String originalTitle) {
+    public TitleInformation(String titleType, String primaryTitle, String originalTitle) {
         this.titleType = titleType;
         this.primaryTitle = primaryTitle;
         this.originalTitle = originalTitle;

@@ -23,38 +23,40 @@ public class ReviewRepositoryCustomImpl implements ReviewRepositoryCustom {
 	
 	@Override
 	public List<Review> findBySortAndPageResults(
-			Integer pageNumber, Integer pageSize, String reviewType, String originPlatformName, Boolean spoilerAlert,
-			String language, String country, Boolean ratingAscending, Boolean ratingDescending, Boolean dateAscending,
-			Boolean dateDescending, Long binderId
-		) {
+		Integer pageNumber, Integer pageSize, String reviewType, String originPlatformName, Boolean spoilerAlert,
+		String language, String country, Boolean ratingAscending, Boolean ratingDescending, Boolean dateAscending,
+		Boolean dateDescending, Long binderId
+	) {
 		// Filtering logic
 		CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
         CriteriaQuery<Review> cq = cb.createQuery(Review.class);
-        Root<Review> review = cq.from(Review.class);
-        review.join("binder");
+        Root<Review> reviewRoot = cq.from(Review.class);
+        reviewRoot.join("binder");
         List<Predicate> predicates = new ArrayList<Predicate>();
-        Predicate idPredicate = cb.equal(review.get("binder").get("id"), binderId);
+        
+        Predicate idPredicate = cb.equal(reviewRoot.get("binder").get("id"), binderId);
         predicates.add(idPredicate);
         if ("free".equals(reviewType)) {
-        	predicates.add(cb.equal(review.type(), cb.literal(FreeReview.class)));
+        	predicates.add(cb.equal(reviewRoot.type(), cb.literal(FreeReview.class)));
         }
         if ("premium".equals(reviewType)) {
-        	predicates.add(cb.equal(review.type(), cb.literal(PremiumReview.class)));
+        	predicates.add(cb.equal(reviewRoot.type(), cb.literal(PremiumReview.class)));
         }
         if (Objects.nonNull(originPlatformName)) {
-        	predicates.add(cb.equal(review.get("originPlatformName"), originPlatformName));
+        	predicates.add(cb.equal(reviewRoot.get("originPlatformName"), originPlatformName));
         }
         if (Objects.nonNull(spoilerAlert) && "free".equals(reviewType)) {
-        	Root<FreeReview> frsa = cb.treat(review, FreeReview.class);
+        	Root<FreeReview> frsa = cb.treat(reviewRoot, FreeReview.class);
         	predicates.add(cb.equal(frsa.get("spoilerAlert"), spoilerAlert));
         }
         if (Objects.nonNull(language)) {
-        	predicates.add(cb.equal(review.get("language"), language));
+        	predicates.add(cb.equal(reviewRoot.get("language"), language));
         }
         if (Objects.nonNull(country) && "free".equals(reviewType)) {
-        	Root<FreeReview> frco = cb.treat(review, FreeReview.class);
+        	Root<FreeReview> frco = cb.treat(reviewRoot, FreeReview.class);
         	predicates.add(cb.equal(frco.get("country"), country));
         }
+        
         Predicate[] predArray = new Predicate[predicates.size()];
         predicates.toArray(predArray);
         cq.where(predArray);
@@ -62,17 +64,18 @@ public class ReviewRepositoryCustomImpl implements ReviewRepositoryCustom {
         // Sorting logic
         List<Order> orders = new ArrayList<Order>();
         if (Objects.nonNull(ratingDescending) && ratingDescending) {
-        	orders.add(cb.desc(review.get("rating")));
+        	orders.add(cb.desc(reviewRoot.get("rating")));
         }
         if (Objects.nonNull(ratingAscending) && ratingAscending) {
-    		orders.add(cb.asc(review.get("rating")));
+    		orders.add(cb.asc(reviewRoot.get("rating")));
     	}
     	if (Objects.nonNull(dateDescending) && dateDescending) {
-    		orders.add(cb.desc(review.get("date")));
+    		orders.add(cb.desc(reviewRoot.get("date")));
     	} 
     	if (Objects.nonNull(dateAscending) && dateAscending) {
-    		orders.add(cb.asc(review.get("date")));
+    		orders.add(cb.asc(reviewRoot.get("date")));
     	}
+    	
         Order[] ordArray = new Order[orders.size()];
         orders.toArray(ordArray);
         cq.orderBy(ordArray);

@@ -14,10 +14,10 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("episode")
 public class Episode extends PlatformContent {
-    Integer seasonNumber;
-    Integer episodeNumber;
+	private Integer seasonNumber;
+	private Integer episodeNumber;
 
-    public Episode (Integer seasonNumber, Integer episodeNumber) {
+    public Episode(Integer seasonNumber, Integer episodeNumber) {
         this.seasonNumber = seasonNumber;
         this.episodeNumber = episodeNumber;
     }

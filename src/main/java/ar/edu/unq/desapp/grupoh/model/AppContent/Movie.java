@@ -21,7 +21,10 @@ import lombok.Setter;
 @Entity
 @DiscriminatorValue("movie")
 public class Movie extends PlatformContent {
-    public Movie(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes, List<Genre> genres, Crew crew, List<Principal> principals) {
+    public Movie(
+    	String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate,
+    	Integer runtimeMinutes, List<Genre> genres, Crew crew, List<Principal> principals
+    ) {
         super(titleId, titleInformation, isAdult, titleDate, runtimeMinutes, genres, crew, principals);
     }
 }

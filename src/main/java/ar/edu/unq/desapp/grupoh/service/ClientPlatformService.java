@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.grupoh.dto.ClientPlatformDTO;
 import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
@@ -15,6 +16,7 @@ public class ClientPlatformService {
 	@Autowired
 	private ClientPlatformRepository clientRepository;
 	
+	@Transactional
 	public String add(ClientPlatformDTO requestBody) {
 		String apiKey = UUID.randomUUID().toString();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

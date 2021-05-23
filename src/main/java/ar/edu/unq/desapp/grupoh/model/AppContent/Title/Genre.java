@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,11 +15,11 @@ import lombok.Setter;
 public class Genre {
     @Id
     @GeneratedValue
-    Long id;
-    String name;
-    String production;
+    private Long id;
+    private String name;
+    private String production;
 
-    public Genre (String name, String production) {
+    public Genre(String name, String production) {
         this.name = name;
         this.production = production;
     }

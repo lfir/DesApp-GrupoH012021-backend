@@ -17,13 +17,13 @@ import java.util.List;
 public class Crew {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
     @OneToMany
-    List<Principal> directors;
+    private List<Principal> directors;
     @OneToMany
-    List<Principal> writers;
+    private List<Principal> writers;
 
-    public Crew (List<Principal> directors, List<Principal> writers) {
+    public Crew(List<Principal> directors, List<Principal> writers) {
         this.directors = directors;
         this.writers = writers;
     }

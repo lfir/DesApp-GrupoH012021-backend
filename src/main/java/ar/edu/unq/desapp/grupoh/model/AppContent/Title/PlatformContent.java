@@ -20,24 +20,27 @@ import java.util.List;
 @DiscriminatorColumn(name = "platform_content")
 public abstract class PlatformContent {
     @Id
-    String titleId;
+    private String titleId;
     @OneToOne
-    TitleInformation titleInformation;
-    Boolean isAdult;
+    private TitleInformation titleInformation;
+    private Boolean isAdult;
     @OneToOne
-    TitleDate titleDate;
-    Integer runtimeMinutes ;
+    private TitleDate titleDate;
+    private Integer runtimeMinutes;
     @OneToMany
-    List<Genre> genres;
+    private List<Genre> genres;
     @OneToOne
-    Crew crew;
+    private Crew crew;
     @OneToMany
-    List<Principal> principals;
+    private List<Principal> principals;
     @OneToOne
     @JsonIgnore
 	private PlatformContentReviewBinder binder;
 
-    public PlatformContent(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals) {
+    public PlatformContent(
+    	String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate,
+    	Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals
+    ) {
         this.titleId = titleId;
         this.titleInformation = titleInformation;
         this.isAdult = isAdult;

@@ -13,8 +13,6 @@ import lombok.NonNull;
 @JsonDeserialize(builder = ReviewDTO.Builder.class)
 @Getter
 public class ReviewDTO {
-	@JsonPOJOBuilder(withPrefix = "")
-    public static class Builder {}
 	@NonNull
 	private String description;
 	@NonNull
@@ -34,4 +32,7 @@ public class ReviewDTO {
 	private String country;
 	@NonNull
 	private String contentImdbId;
+	
+	@JsonPOJOBuilder(withPrefix = "")
+    public static class Builder {}
 }

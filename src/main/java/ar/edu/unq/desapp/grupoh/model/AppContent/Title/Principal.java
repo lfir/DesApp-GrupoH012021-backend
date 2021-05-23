@@ -15,11 +15,11 @@ import javax.persistence.Id;
 public class Principal {
     @Id
     @GeneratedValue
-    Long id;
-    String category;
-    String job;
-    String characters;
-    String name;
+    private Long id;
+    private String category;
+    private String job;
+    private String characters;
+    private String name;
 
     public Principal(String category, String job, String characters) {
         this.category = category;

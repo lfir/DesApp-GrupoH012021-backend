@@ -16,11 +16,11 @@ import java.time.LocalDate;
 public class TitleDate {
     @Id
     @GeneratedValue
-    Long Id;
-    LocalDate startYear;
-    LocalDate endYear;
+    private Long Id;
+    private LocalDate startYear;
+    private LocalDate endYear;
 
-    public TitleDate (LocalDate startYear, LocalDate endYear) {
+    public TitleDate(LocalDate startYear, LocalDate endYear) {
         this.startYear = startYear;
         this.endYear = endYear;
     }

@@ -23,10 +23,13 @@ import lombok.Setter;
 @DiscriminatorValue("series")
 public class Series extends PlatformContent {
      @OneToMany
-     List<Episode> episodes;
+     private List<Episode> episodes;
 
-     public Series(String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate, Integer runtimeMinutes, List<Genre> genres, Crew crew, List<Principal> principals, List<Episode> episodes) {
-          super(titleId, titleInformation, isAdult, titleDate, runtimeMinutes, genres, crew, principals);
-          this.episodes = episodes;
+     public Series(
+         String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate,
+         Integer runtimeMinutes, List<Genre> genres, Crew crew, List<Principal> principals, List<Episode> episodes
+     ) {
+         super(titleId, titleInformation, isAdult, titleDate, runtimeMinutes, genres, crew, principals);
+         this.episodes = episodes;
      }
 }
