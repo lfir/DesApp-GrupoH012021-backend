@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoh.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class ClientPlatformService {
 		
 		this.clientRepository.save(clientPlatform);
 		return apiKey;
+	}
+
+	public Optional<ClientPlatform> get(String apiKey) {
+		return this.clientRepository.findByApiKey(apiKey);
 	}
 }
