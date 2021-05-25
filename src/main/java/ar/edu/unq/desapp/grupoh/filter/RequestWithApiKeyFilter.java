@@ -29,7 +29,7 @@ public class RequestWithApiKeyFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String apiKey = req.getHeader("Api-key");
 		Optional<ClientPlatform> maybeClient = this.clientService.get(apiKey); 
-		if (maybeClient.isEmpty()) {
+		if (!maybeClient.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
 		
