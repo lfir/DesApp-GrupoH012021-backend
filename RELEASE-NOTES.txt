@@ -1,3 +1,20 @@
+---------------------------------------------------------------------
+TAG 2.0.0
+---------------------------------------------------------------------
+NEW FEATURES:
+* Inverse search (returns information about Platform Contents).
+* Advanced Review search.
+* Report Review.
+* User registration.
+* API key validation.
+
+NOTES:
+Features not developed in this release:
+* Request data validation.
+* Error handling during request processing.
+
+KNOWN ISSUES:
+* 
 
 ---------------------------------------------------------------------
 TAG 1.0.0
@@ -18,4 +35,3 @@ Features not developed in this release:
 
 KNOWN ISSUES:
 * 
-
