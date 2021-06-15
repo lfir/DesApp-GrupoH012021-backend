@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,8 @@ public class PlatformContentController {
 		@RequestParam(value = "positivevaluereviews", required = false) Boolean positiveValueReviews,
 		@RequestParam(value = "genrenames", required = false) List<String> genreNames,
 		@RequestParam(value = "actornames", required = false) List<String> actorNames,
-		@RequestParam(value = "decade", required = false) String decade
+		@RequestParam(value = "decade", required = false) String decade,
+		@RequestHeader(value = "Api-key") String apiKey
 	) {
 		return ResponseEntity.ok(
 			this.platformContentService.get(

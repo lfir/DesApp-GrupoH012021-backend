@@ -87,4 +87,8 @@ public class ReviewService {
 			ratingAscending, ratingDescending, dateAscending, dateDescending, binderId
 		);
 	}
+	
+	public String getPlatformNameOf(Long reviewId) {
+		return this.reviewRepository.findById(reviewId).get().getOriginPlatformName();
+	}
 }
