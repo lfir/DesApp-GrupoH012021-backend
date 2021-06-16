@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unq.desapp.grupoh.dto.ClientPlatformDTO;
 import ar.edu.unq.desapp.grupoh.service.ClientPlatformService;
+import ar.edu.unq.desapp.grupoh.service.LogInRequestBody;
 
 @RestController
 public class ClientPlatformController {
@@ -27,5 +28,11 @@ public class ClientPlatformController {
 		Map<String, String> resMap = new HashMap<String, String>();
 		resMap.put("apiKey", apiKey);
 		return ResponseEntity.status(HttpStatus.CREATED).body(resMap);
+	}
+	
+	@CrossOrigin
+	@PostMapping("/login")
+	public ResponseEntity<String> validCredentials(@RequestBody LogInRequestBody requestBody) {
+		return ResponseEntity.ok(this.clientService.validateCredentials(requestBody));
 	}
 }

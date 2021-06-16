@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.grupoh.dto.ClientPlatformDTO;
+import ar.edu.unq.desapp.grupoh.exception.UnauthorizedException;
 import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import ar.edu.unq.desapp.grupoh.persistence.ClientPlatformRepository;
 import io.jsonwebtoken.JwtBuilder;
@@ -44,5 +45,13 @@ public class ClientPlatformService {
 
 	public Optional<ClientPlatform> get(String apiKey) {
 		return this.clientRepository.findByApiKey(apiKey);
+	}
+
+	public String validateCredentials(LogInRequestBody requestBody) {
+		ClientPlatform clientPlatform = this.clientRepository.findByUsername(requestBody.getUsername()).get();
+		if (!this.passwordEncoder.matches(requestBody.getPassword(), clientPlatform.getPassword())) {
+			throw new UnauthorizedException();
+		}
+		return "";
 	}
 }
