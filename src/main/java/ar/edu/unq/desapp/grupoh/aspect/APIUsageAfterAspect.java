@@ -1,10 +1,13 @@
 package ar.edu.unq.desapp.grupoh.aspect;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,15 +27,21 @@ public class APIUsageAfterAspect {
 	@Autowired
 	private ClientPlatformService clientService;
 	
-	@AfterReturning(
+	@Around(
 		"execution(* ar.edu.unq.desapp.grupoh.webservice.ReviewController.*(..))"
 		+ "|| execution(* ar.edu.unq.desapp.grupoh.webservice.PlatformContentController.*(..))"
 	)
-	public void registerAPIUsage(JoinPoint jp) {
+	public Object registerAPIUsage(ProceedingJoinPoint jp) throws Throwable {
+		Logger logger = LoggerFactory.getLogger(APIUsageAfterAspect.class);
 		LocalDate date = LocalDate.now();
 		String calledMethod = jp.getSignature().toString();
 		String action = "";
 		String platformName = "";
+		long startTime = System.currentTimeMillis();
+		
+		Object object = jp.proceed();
+		
+		long endtime = System.currentTimeMillis();
 		
 		if (calledMethod.contains("createAndSaveNewReview")) {
 			ReviewDTO reviewDTO = (ReviewDTO) jp.getArgs()[0];	
@@ -61,5 +70,18 @@ public class APIUsageAfterAspect {
 		}
 		
 		this.usageService.add(platformName, action, date);
+			
+		logger.info(this.makeLogMessage(platformName, action, jp.getArgs(), endtime, startTime));
+		
+		return object;
     }
+
+	private String makeLogMessage(String platformName, String action, Object[] args, long endtime, long startTime) {
+		String sep = " - ";
+		String user = "ClientPlatform: " + platformName + sep;
+		String operation = "Action: " + action + sep;
+		String params = "Arguments: " + Arrays.toString(args) + sep;
+		String runtime = "Runtime: " + (endtime-startTime) + "ms";
+		return user + operation + params + runtime;
+	}
 }
