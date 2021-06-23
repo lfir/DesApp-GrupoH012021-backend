@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoh.persistence;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,10 @@ public interface PlatformContentReviewBinderRepository extends JpaRepository<Pla
 	
 	@Query("SELECT b.id FROM PlatformContentReviewBinder b JOIN b.reviews r WHERE r.likeDislikeScore >= 1")
 	List<Long> getIdsWithReviewsOfPositiveValue();
+
+	@Query("SELECT count(b.id) FROM PlatformContentReviewBinder b JOIN b.reviews WHERE b.id = :binderId")
+	Integer getNumberOfReviews(Long binderId);
+
+	@Query("SELECT avg(r.rating) FROM PlatformContentReviewBinder b JOIN b.reviews r WHERE b.id = :binderId")
+	BigDecimal getAverageRating(Long binderId);
 }

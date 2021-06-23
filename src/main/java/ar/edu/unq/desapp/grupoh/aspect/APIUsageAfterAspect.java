@@ -68,6 +68,11 @@ public class APIUsageAfterAspect {
 			platformName = this.clientService.get(apiKey).get().getPlatformName();
 			action = "searchcontent";
 		}
+		if (calledMethod.contains("getSummaryInfo")) {
+			String apiKey = (String) jp.getArgs()[1];
+			platformName = this.clientService.get(apiKey).get().getPlatformName();
+			action = "getsummaryinfo";
+		}
 		
 		this.usageService.add(platformName, action, date);
 			

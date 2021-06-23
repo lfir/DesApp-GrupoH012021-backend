@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoh.webservice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
+import ar.edu.unq.desapp.grupoh.service.CacheService;
 import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
 
 @RestController
 public class PlatformContentController {
 	@Autowired
 	private PlatformContentService platformContentService;
+	@Autowired
+	private CacheService cacheService;
+	private final String commonPath = "/api/platformcontents";
 
 	@CrossOrigin
-	@GetMapping("/api/platformcontents")
+	@GetMapping(commonPath)
 	public ResponseEntity<List<PlatformContent>> inverseSearch(
 		@RequestParam(value = "pagenumber") Integer pageNumber,
 		@RequestParam(value = "pagesize") Integer pageSize,
@@ -35,6 +40,18 @@ public class PlatformContentController {
 				pageNumber, pageSize, minReviewRating, positiveValueReviews, 
 				genreNames, actorNames, decade
 			)
+		);
+	}
+	
+	@CrossOrigin
+	@GetMapping(commonPath + "/summary")
+	public ResponseEntity<Map<String, String>> getSummaryInfo(
+		@RequestParam(value = "contentimdbid") String contentImdbId,
+		@RequestHeader(value = "Api-key") String apiKey
+	) {
+		this.cacheService.saveSummaryData();
+		return ResponseEntity.ok(
+			this.cacheService.getSummaryData(contentImdbId)
 		);
 	}
 }

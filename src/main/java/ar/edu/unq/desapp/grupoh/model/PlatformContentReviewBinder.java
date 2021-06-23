@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoh.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,5 +37,16 @@ public class PlatformContentReviewBinder {
 
 	public String getPlatformContentImdbId() {
 		return this.platformContent.getTitleId();
+	}
+
+	public List<String> getPlatformContentBasicInfo() {
+		List<String> basicInfo = new ArrayList<>();
+		basicInfo.add(this.getPlatformContentImdbId());
+		basicInfo.add(this.platformContent.getTitleInformation().getOriginalTitle());
+		basicInfo.add(String.valueOf(this.platformContent.getTitleDate().getStartYear().getYear()));
+		basicInfo.add(this.platformContent.getRuntimeMinutes().toString());
+		basicInfo.add(this.platformContent.getIsAdult().toString());
+		
+		return basicInfo;
 	}
 }
