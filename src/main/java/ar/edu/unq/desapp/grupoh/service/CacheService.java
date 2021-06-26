@@ -41,7 +41,12 @@ public class CacheService {
 	}
 	
 	public Map<String, String> getSummaryData(String contentImdbId) {
-		String[] summaryData = this.dataRepository.findById(contentImdbId).split(",");
+		String[] summaryData = {"", "", "", "", "", ""};
+		String cachedData = this.dataRepository.findById(contentImdbId); 
+		if (!Objects.isNull(cachedData)) {
+			summaryData = cachedData.split(",");
+		}
+		
 		Map<String, String> res = new HashMap<>();
 		res.put("originalTitle", summaryData[0]);
 		res.put("startYear", summaryData[1]);

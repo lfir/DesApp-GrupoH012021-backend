@@ -49,7 +49,6 @@ public class PlatformContentController {
 		@RequestParam(value = "contentimdbid") String contentImdbId,
 		@RequestHeader(value = "Api-key") String apiKey
 	) {
-		this.cacheService.saveSummaryData();
 		return ResponseEntity.ok(
 			this.cacheService.getSummaryData(contentImdbId)
 		);
