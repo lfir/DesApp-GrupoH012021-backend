@@ -29,7 +29,7 @@ public class APIUsageAfterAspect {
 	
 	@Around(
 		"execution(* ar.edu.unq.desapp.grupoh.webservice.ReviewController.*(..))"
-		+ "|| execution(* ar.edu.unq.desapp.grupoh.webservice.PlatformContentController.*(..))"
+		+ "|| execution(* ar.edu.unq.desapp.grupoh.webservice.PlatformContentController.inverseSearch(..))"
 	)
 	public Object registerAPIUsage(ProceedingJoinPoint jp) throws Throwable {
 		Logger logger = LoggerFactory.getLogger(APIUsageAfterAspect.class);
@@ -67,11 +67,6 @@ public class APIUsageAfterAspect {
 			String apiKey = (String) jp.getArgs()[7];
 			platformName = this.clientService.get(apiKey).get().getPlatformName();
 			action = "searchcontent";
-		}
-		if (calledMethod.contains("getSummaryInfo")) {
-			String apiKey = (String) jp.getArgs()[1];
-			platformName = this.clientService.get(apiKey).get().getPlatformName();
-			action = "getsummaryinfo";
 		}
 		
 		this.usageService.add(platformName, action, date);
