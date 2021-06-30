@@ -1,10 +1,12 @@
 package ar.edu.unq.desapp.grupoh.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +31,7 @@ public class ReviewTest {
 		freeReview.setRating(2);
 		freeReview.setSpoilerAlert(Boolean.TRUE);
 		freeReview.setLikeDislikeScore(2);
-		freeReview.setUserReports("");
+		freeReview.setUserReports(Arrays.asList(mock(UserReport.class)));
 		
 		assertTrue(Long.class.isInstance(freeReview.getId()));
 		assertTrue(String.class.isInstance(freeReview.getCountry()));
@@ -43,7 +45,7 @@ public class ReviewTest {
 		assertTrue(Integer.class.isInstance(freeReview.getRating()));
 		assertTrue(Boolean.class.isInstance(freeReview.getSpoilerAlert()));
 		assertTrue(Integer.class.isInstance(freeReview.getLikeDislikeScore()));
-		assertTrue(String.class.isInstance(freeReview.getUserReports()));
+		assertTrue(UserReport.class.isInstance(freeReview.getUserReports().get(0)));
 	}
 	
 	@Test
@@ -81,7 +83,7 @@ public class ReviewTest {
 		Boolean spoilerAlert = Boolean.FALSE;
 		String nickname = "testUser";
 		String country = "Argentina";
-		String userReports = "testUserReport";
+		List<UserReport> userReports = Arrays.asList(mock(UserReport.class));
 		FreeReview freeReview = new FreeReview(
 			"testFreeReview", "testFullDescription", 1, spoilerAlert, LocalDate.now(),
 			"Netflix", "id0", nickname, "English", country, 2, userReports

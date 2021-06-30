@@ -15,6 +15,7 @@ public class UpdateReviewRequestBody {
 	private String attribute;
 	@NonNull
 	private String value;
+	private String author;
 	
 	@JsonPOJOBuilder(withPrefix = "")
     public static class Builder {}

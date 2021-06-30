@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoh.service;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.grupoh.dto.ReviewDTO;
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
+import ar.edu.unq.desapp.grupoh.model.UserReport;
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
 import ar.edu.unq.desapp.grupoh.model.Review.PremiumReview;
 import ar.edu.unq.desapp.grupoh.model.Review.Review;
@@ -38,7 +40,7 @@ public class ReviewService {
 				requestBody.getDescription(), requestBody.getFullDescription(), requestBody.getRating(), 
 				requestBody.getSpoilerAlert(), requestBody.getDate(), requestBody.getOriginPlatformName(),
 				requestBody.getPlatformUserId(), requestBody.getNickname(), requestBody.getLanguage(),
-				requestBody.getCountry(), 0, ""
+				requestBody.getCountry(), 0, Arrays.asList()
 			);
 		}
 		
@@ -67,7 +69,12 @@ public class ReviewService {
 		}
 		if ("userReports".equals(requestBody.getAttribute())) {
 			FreeReview freeReview = (FreeReview) review;
-			freeReview.setUserReports(freeReview.getUserReports() + "|" + requestBody.getValue());
+			UserReport userReport = new UserReport();
+			
+			userReport.setAuthor(requestBody.getAuthor());
+			userReport.setDate(LocalDate.now());
+			userReport.setMessage(requestBody.getValue());
+			freeReview.getUserReports().add(userReport);
 		}
 		
 		this.reviewRepository.save(review);

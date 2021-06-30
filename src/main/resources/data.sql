@@ -157,8 +157,8 @@ VALUES('premium', 2, '2021-04-23', 'Pelicula aburrida', 'Muy aburrida', 'Spanish
 -- Reviews nestor
 INSERT INTO review 
 (review_type, id, date, description, full_description, language, like_dislike_score, origin_platform_name,
-platform_user_id, rating, user_reports, country, nickname, spoiler_alert, binder_id)
-VALUES('free', 3, '2019-04-23', 'Excelente pelicula', '+5 y a favoritos', 'Spanish', 0, 'Amazon', '23', 0, 'r0|r1', 'Argentina', 'nestor123', false, 1);
+platform_user_id, rating, country, nickname, spoiler_alert, binder_id)
+VALUES('free', 3, '2019-04-23', 'Excelente pelicula', '+5 y a favoritos', 'Spanish', 0, 'Amazon', '23', 0, 'Argentina', 'nestor123', false, 1);
 
 -- binding with reviews
 INSERT INTO platform_content_review_binder_reviews (platform_content_review_binder_id, reviews_id) VALUES (1,1);
