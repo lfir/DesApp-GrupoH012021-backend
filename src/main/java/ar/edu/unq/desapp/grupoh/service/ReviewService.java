@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import ar.edu.unq.desapp.grupoh.messagebroker.MessagingConfig;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,8 @@ public class ReviewService {
 	@Autowired
 	private ReviewRepository reviewRepository;
 	private Review review;
+	@Autowired
+	private RabbitTemplate template;
 	
 	@Transactional
 	public Review add(ReviewDTO requestBody) {
@@ -52,6 +56,7 @@ public class ReviewService {
 			binder.getReviews().add(this.review);
 		}
 		this.binderRepository.save(binder);
+		template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, this.review);
 		return binder.getReviews().get(binder.getReviews().size() - 1);
 	}
 

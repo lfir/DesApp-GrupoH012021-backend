@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoh.messagebroker;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -32,7 +33,9 @@ public class MessagingConfig {
 
     @Bean
     public MessageConverter converter () {
-        return new Jackson2JsonMessageConverter();
+        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+
+        return new Jackson2JsonMessageConverter(mapper);
     }
 
     @Bean

@@ -26,7 +26,7 @@ public class PlatformContentService {
 	}
 
 	public void setSubscriber(SubscriberDTO subscriberDTO) {
-		Optional<PlatformContent> platformContentFromdb = platformContentRepository.findById(Long.valueOf(subscriberDTO.contentImdbId));
+		Optional<PlatformContent> platformContentFromdb = platformContentRepository.findByIdIMDB(subscriberDTO.getContentImdbId());
 		Subscriber subscriber = new Subscriber(subscriberDTO.contentImdbId, subscriberDTO.platform, subscriberDTO.url);
 		subscriberRepository.save(subscriber);
 		List<Subscriber> subscribers = platformContentFromdb.get().getSubscribers();

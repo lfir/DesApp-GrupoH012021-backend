@@ -9,15 +9,11 @@ import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import ar.edu.unq.desapp.grupoh.service.ClientPlatformService;
 import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
+import ar.edu.unq.desapp.grupoh.service.SubscribeRequestBody;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ar.edu.unq.desapp.grupoh.service.CacheService;
 
@@ -66,16 +62,13 @@ public class PlatformContentController {
 
 	@CrossOrigin
 	@PostMapping(commonPath + "/subscribe")
-	public ResponseEntity subscribe(
-		@RequestParam(value = "contentimdbid", required = false) String contentImdbId,
-		@RequestParam(value = "username", required = false) String username,
-		@RequestParam(value = "url", required = false) String url,
+	public ResponseEntity subscribe(@RequestBody SubscribeRequestBody requestBody,
 		@RequestHeader(value = "Api-key") String apiKey
 
 	) {
 		ClientPlatform clientPlatform = clientPlatformService.get(apiKey).get();
 		if (clientPlatform != null) {
-			SubscriberDTO subscriber = new SubscriberDTO(contentImdbId, clientPlatform, url);
+			SubscriberDTO subscriber = new SubscriberDTO(requestBody.getContentImdbId(), clientPlatform, requestBody.getUrl());
 			platformContentService.setSubscriber(subscriber);
 			return ResponseEntity.ok(null);
 		} else {
