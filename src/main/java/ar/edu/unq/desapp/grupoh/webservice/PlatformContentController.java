@@ -3,6 +3,13 @@ package ar.edu.unq.desapp.grupoh.webservice;
 import java.util.List;
 import java.util.Map;
 
+import ar.edu.unq.desapp.grupoh.dto.SubscriberDTO;
+import ar.edu.unq.desapp.grupoh.exception.UnauthorizedException;
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
+import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
+import ar.edu.unq.desapp.grupoh.service.ClientPlatformService;
+import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,14 +19,16 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import ar.edu.unq.desapp.grupoh.service.CacheService;
-import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
 
 @RestController
 public class PlatformContentController {
 	@Autowired
+	 private RabbitTemplate template;
+	@Autowired
 	private PlatformContentService platformContentService;
+	@Autowired
+	private ClientPlatformService clientPlatformService;
 	@Autowired
 	private CacheService cacheService;
 	private final String commonPath = "/api/platformcontents";
@@ -54,7 +63,7 @@ public class PlatformContentController {
 			this.cacheService.getSummaryData(contentImdbId)
 		);
 	}
-	
+
 	@CrossOrigin
 	@PostMapping(commonPath + "/subscribe")
 	public ResponseEntity subscribe(
@@ -62,7 +71,15 @@ public class PlatformContentController {
 		@RequestParam(value = "username", required = false) String username,
 		@RequestParam(value = "url", required = false) String url,
 		@RequestHeader(value = "Api-key") String apiKey
+
 	) {
-		return ResponseEntity.ok(null);
+		ClientPlatform clientPlatform = clientPlatformService.get(apiKey).get();
+		if (clientPlatform != null) {
+			SubscriberDTO subscriber = new SubscriberDTO(contentImdbId, clientPlatform, url);
+			platformContentService.setSubscriber(subscriber);
+			return ResponseEntity.ok(null);
+		} else {
+			throw new UnauthorizedException();
+		}
 	}
 }

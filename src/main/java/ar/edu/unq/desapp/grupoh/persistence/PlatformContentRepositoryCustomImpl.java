@@ -14,11 +14,11 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.edu.unq.desapp.grupoh.model.AppContent.Movie;
 import ar.edu.unq.desapp.grupoh.model.AppContent.Series;
-import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 
 public class PlatformContentRepositoryCustomImpl implements PlatformContentRepositoryCustom {
 	@PersistenceContext

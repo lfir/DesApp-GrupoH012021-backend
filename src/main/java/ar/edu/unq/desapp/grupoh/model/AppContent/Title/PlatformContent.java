@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoh.model.AppContent.Title;
 
+import ar.edu.unq.desapp.grupoh.model.AppContent.Subscriber;
+import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -35,11 +38,13 @@ public abstract class PlatformContent {
     private List<Principal> principals;
     @OneToOne
     @JsonIgnore
-	private PlatformContentReviewBinder binder;
+    private PlatformContentReviewBinder binder;
+    @OneToMany
+    private List<Subscriber> subscribers;
 
     public PlatformContent(
-    	String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate,
-    	Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals
+            String titleId, TitleInformation titleInformation, Boolean isAdult, TitleDate titleDate,
+            Integer runtimeMinutes , List<Genre> genres, Crew crew, List<Principal> principals
     ) {
         this.titleId = titleId;
         this.titleInformation = titleInformation;
@@ -49,5 +54,6 @@ public abstract class PlatformContent {
         this.genres = genres;
         this.crew = crew;
         this.principals = principals;
+        this.subscribers = new ArrayList<>();
     }
 }
