@@ -21,9 +21,9 @@ public class PlatformUsageController {
 	@CrossOrigin
 	@GetMapping("/api/platformusage")
 	public ResponseEntity<List<APIUsageRecord>> getUsageRecordsOf(
-		@RequestParam(value = "platformname") String platformName,
+		@RequestParam(value = "platformname") String username,
 		@RequestHeader(value = "Api-key") String apiKey
 	) {
-		return ResponseEntity.ok(this.usageService.get(platformName, apiKey));
+		return ResponseEntity.ok(this.usageService.get(username, apiKey));
 	}
 }

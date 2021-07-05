@@ -22,10 +22,10 @@ public class APIUsageService {
 		this.usageRepository.save(usageRecord);
 	}
 
-	public List<APIUsageRecord> get(String platformName, String apiKey) {
-		if (!this.clientService.get(apiKey).get().getPlatformName().equals(platformName)) {
+	public List<APIUsageRecord> get(String username, String apiKey) {
+		if (!this.clientService.get(apiKey).get().getUsername().equals(username)) {
 			throw new UnauthorizedException();
 		}
-		return this.usageRepository.findByName(platformName);
+		return this.usageRepository.findByName(this.clientService.get(apiKey).get().getPlatformName());
 	}
 }
