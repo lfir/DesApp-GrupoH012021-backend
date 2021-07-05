@@ -1,4 +1,18 @@
 ---------------------------------------------------------------------
+TAG 3.0.0
+---------------------------------------------------------------------
+NEW FEATURES:
+* Optional notifications can be received when new reviews are added.
+* High-performance endpoint to retrieve basic information about the contents on the platform.
+
+NOTES:
+Features not developed in this release:
+* Error handling during request processing.
+
+KNOWN ISSUES:
+* 
+
+---------------------------------------------------------------------
 TAG 2.0.0
 ---------------------------------------------------------------------
 NEW FEATURES:
