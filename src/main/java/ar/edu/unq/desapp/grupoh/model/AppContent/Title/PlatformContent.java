@@ -39,7 +39,7 @@ public abstract class PlatformContent {
     @OneToOne
     @JsonIgnore
     private PlatformContentReviewBinder binder;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id", cascade = CascadeType.ALL)
     private List<Subscriber> subscribers;
 
     public PlatformContent(

@@ -10,7 +10,6 @@ import ar.edu.unq.desapp.grupoh.model.ClientPlatform;
 import ar.edu.unq.desapp.grupoh.service.ClientPlatformService;
 import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
 import ar.edu.unq.desapp.grupoh.service.SubscribeRequestBody;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +19,7 @@ import ar.edu.unq.desapp.grupoh.service.CacheService;
 @RestController
 public class PlatformContentController {
 	@Autowired
-	 private RabbitTemplate template;
-	@Autowired
 	private PlatformContentService platformContentService;
-	@Autowired
-	private ClientPlatformService clientPlatformService;
 	@Autowired
 	private CacheService cacheService;
 	private final String commonPath = "/api/platformcontents";
@@ -58,21 +53,5 @@ public class PlatformContentController {
 		return ResponseEntity.ok(
 			this.cacheService.getSummaryData(contentImdbId)
 		);
-	}
-
-	@CrossOrigin
-	@PostMapping(commonPath + "/subscribe")
-	public ResponseEntity subscribe(@RequestBody SubscribeRequestBody requestBody,
-		@RequestHeader(value = "Api-key") String apiKey
-
-	) {
-		ClientPlatform clientPlatform = clientPlatformService.get(apiKey).get();
-		if (clientPlatform != null) {
-			SubscriberDTO subscriber = new SubscriberDTO(requestBody.getContentImdbId(), clientPlatform, requestBody.getUrl());
-			platformContentService.setSubscriber(subscriber);
-			return ResponseEntity.ok(null);
-		} else {
-			throw new UnauthorizedException();
-		}
 	}
 }

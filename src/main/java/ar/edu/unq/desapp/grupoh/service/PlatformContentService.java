@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ar.edu.unq.desapp.grupoh.persistence.PlatformContentRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 public class PlatformContentService {
 	@Autowired
 	private PlatformContentRepository platformContentRepository;
-	@Autowired
-	private SubscriberRepository subscriberRepository;
 
 	public List<PlatformContent> get(
 		Integer pageNumber, Integer pageSize, Integer minReviewRating, Boolean positiveValueReviews,
@@ -25,14 +25,7 @@ public class PlatformContentService {
 		return this.platformContentRepository.findByAndPageResults(pageNumber, pageSize, minReviewRating, positiveValueReviews, genreNames, actorNames, decade);
 	}
 
-	public void setSubscriber(SubscriberDTO subscriberDTO) {
-		Optional<PlatformContent> platformContentFromdb = platformContentRepository.findByIdIMDB(subscriberDTO.getContentImdbId());
-		Subscriber subscriber = new Subscriber(subscriberDTO.contentImdbId, subscriberDTO.platform, subscriberDTO.url);
-		subscriberRepository.save(subscriber);
-		List<Subscriber> subscribers = platformContentFromdb.get().getSubscribers();
-		subscribers.add(subscriber);
-		platformContentFromdb.get().setSubscribers(subscribers);
-		platformContentRepository.save(platformContentFromdb.get());
-
+	public Optional<PlatformContent> getByTitleId(String titleId) {
+		return platformContentRepository.findByIdIMDB(titleId);
 	}
 }
