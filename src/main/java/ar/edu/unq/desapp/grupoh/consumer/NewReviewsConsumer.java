@@ -28,7 +28,7 @@ public class NewReviewsConsumer {
     @Autowired
     RestTemplate restTemplate;
 
-    @RabbitListener(queues = MessagingConfig.QUEUE)
+    // @RabbitListener(queues = MessagingConfig.QUEUE)
     public void consumeMessageFromQueue(ReviewNotification review) {
 
         PlatformContent platformContent = platformContentService.getByTitleId(review.getTitleId()).get();
