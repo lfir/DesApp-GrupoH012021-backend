@@ -1,24 +1,19 @@
 package ar.edu.unq.desapp.grupoh.consumer;
 
-import ar.edu.unq.desapp.grupoh.messagebroker.MessagingConfig;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import ar.edu.unq.desapp.grupoh.aspect.APIUsageAfterAspect;
 import ar.edu.unq.desapp.grupoh.model.AppContent.Subscriber;
 import ar.edu.unq.desapp.grupoh.model.AppContent.Title.PlatformContent;
 import ar.edu.unq.desapp.grupoh.service.PlatformContentService;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.net.*;
-import java.util.List;
 
 @Component
 public class NewReviewsConsumer {
@@ -38,14 +33,11 @@ public class NewReviewsConsumer {
             try {
                 String baseUrl = subscriber.getUrl();
                 URI uri = new URI(baseUrl);
-                ResponseEntity<String> result = restTemplate.postForEntity(uri, review, String.class);
-                System.out.println(result);
+                restTemplate.postForEntity(uri, review, String.class);
             } catch (Error | URISyntaxException error) {
-                System.out.println(error);
+            	Logger logger = LoggerFactory.getLogger(APIUsageAfterAspect.class);
+                logger.error(error.toString());
             }
         });
-
-
-
     }
 }
