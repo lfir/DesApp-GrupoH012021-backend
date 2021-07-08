@@ -10,7 +10,8 @@ Features not developed in this release:
 * Error handling during request processing.
 
 KNOWN ISSUES:
-* 
+* To run the project locally the following environment variables need to be set: jwtsigningsecret, redishostname, redispassword.
+* To use the notification service a local instance of RabbitMQ needs to be available.
 
 ---------------------------------------------------------------------
 TAG 2.0.0
