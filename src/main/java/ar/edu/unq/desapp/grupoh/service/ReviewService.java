@@ -6,14 +6,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import ar.edu.unq.desapp.grupoh.consumer.ReviewNotification;
-import ar.edu.unq.desapp.grupoh.messagebroker.MessagingConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unq.desapp.grupoh.consumer.ReviewNotification;
 import ar.edu.unq.desapp.grupoh.dto.ReviewDTO;
+import ar.edu.unq.desapp.grupoh.messagebroker.MessagingConfig;
 import ar.edu.unq.desapp.grupoh.model.PlatformContentReviewBinder;
 import ar.edu.unq.desapp.grupoh.model.UserReport;
 import ar.edu.unq.desapp.grupoh.model.Review.FreeReview;
@@ -57,7 +59,13 @@ public class ReviewService {
 			binder.getReviews().add(this.review);
 		}
 		this.binderRepository.save(binder);
-		ReviewNotification reviewNotification = new ReviewNotification(this.review.getDescription(),
+		this.enqueueNotification();
+		return binder.getReviews().get(binder.getReviews().size() - 1);
+	}
+
+	private void enqueueNotification() {
+		try {
+			ReviewNotification reviewNotification = new ReviewNotification(this.review.getDescription(),
 				this.review.getFullDescription(),
 				this.review.getRating(),
 				this.review.getDate(),
@@ -66,9 +74,12 @@ public class ReviewService {
 				this.review.getLanguage(),
 				this.review.getLikeDislikeScore(),
 				this.review.getBinder().getPlatformContentImdbId()
-				);
-		template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, reviewNotification);
-		return binder.getReviews().get(binder.getReviews().size() - 1);
+			);
+			template.convertAndSend(MessagingConfig.EXCHANGE, MessagingConfig.ROUTING_KEY, reviewNotification);
+		} catch (Exception e) {
+			Logger logger = LoggerFactory.getLogger(ReviewService.class);
+			logger.error(e.toString());
+		}
 	}
 
 	@Transactional
